@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Tasks 🚀</title>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> 
+ 
+    <!-- CSS --> 
+    <link rel="stylesheet" href="style.css"> 
+</head> 
+ 
+<body> 
+ 
+    <div class="container"> 
+ 
+        <!-- ================= HEADER ================= --> 
+ 
+        <div class="header"> 
+ 
+            <div> 
+                <h1>My Tasks 🚀</h1> 
+ 
+                <p id="userEmail" class="user-email"> 
+                    Loading... 
+                </p> 
+            </div> 
+ 
+            <button 
+                id="logoutBtn" 
+                class="logout-btn" 
+                onclick="logout()"> 
+                Logout 
+            </button> 
+ 
+        </div> 
+ 
+ 
+        <!-- ================= STATISTICS ================= --> 
+ 
+        <div class="stats"> 
+ 
+            <div class="stat-card"> 
+                <div 
+                    id="totalTasks" 
+                    class="stat-number"> 
+                    0 
+                </div> 
+ 
+                <div class="stat-label"> 
+                    Total Tasks 
+                </div> 
+            </div> 
+ 
+ 
+            <div class="stat-card"> 
+                <div 
+                    id="completedTasks" 
+                    class="stat-number"> 
+                    0 
+                </div> 
+ 
+                <div class="stat-label"> 
+                    Completed 
+                </div> 
+            </div> 
+ 
+ 
+            <div class="stat-card"> 
+                <div 
+                    id="pendingTasks" 
+                    class="stat-number"> 
+                    0 
+                </div> 
+ 
+                <div class="stat-label"> 
+                    Pending 
+                </div> 
+            </div> 
+ 
+        </div> 
+ 
+ 
+        <!-- ================= PROGRESS ================= --> 
+ 
+        <div class="progress-section"> 
+ 
+            <div class="progress-header"> 
+ 
+                <span> 
+                    Today's Progress 
+                </span> 
+ 
+                <span id="progressPercent"> 
+                    0% 
+                </span> 
+ 
+            </div> 
+ 
+            <div class="progress-bar"> 
+ 
+                <div 
+                    id="progressFill" 
+                    class="progress-fill"> 
+                </div> 
+ 
+            </div> 
+ 
+        </div> 
+ 
+ 
+        <!-- ================= ADD TASK ================= --> 
+ 
+        <div class="task-form"> 
+ 
+            <input 
+                type="text" 
+                id="taskInput" 
+                placeholder="Add a new task..." 
+                autocomplete="off"> 
+ 
+ 
+            <select 
+                id="priorityInput" 
+                title="Select task priority"> 
+ 
+                <option value="high"> 
+                    🔴 High 
+                </option> 
+ 
+                <option 
+                    value="medium" 
+                    selected> 
+                    🟡 Medium 
+                </option> 
+ 
+                <option value="low"> 
+                    🟢 Low 
+                </option> 
+ 
+            </select> 
+ 
+ 
+            <input 
+                type="date" 
+                id="dueDateInput" 
+                title="Select due date"> 
+ 
+ 
+            <button 
+                class="add-btn" 
+                onclick="addTask()"> 
+                + 
+            </button> 
+ 
+        </div> 
+ 
+ 
+        <!-- ================= FILTERS ================= --> 
+ 
+        <div class="task-controls"> 
+            <div class="search-box"> 
+    <input 
+        type="search" 
+        id="searchInput" 
+        placeholder="🔍 Search tasks..." 
+        aria-label="Search tasks" 
+        oninput="searchTasks()" 
+    > 
+</div> 
+ 
+            <button 
+                class="filter-btn active" 
+                onclick="setFilter('all', this)"> 
+                All 
+            </button> 
+ 
+            <button 
+                class="filter-btn" 
+                onclick="setFilter('pending', this)"> 
+                Pending 
+            </button> 
+            <button 
+    class="calendar-btn" 
+    onclick="openCalendar()"> 
+    📅 Calendar 
+</button> 
+ 
+            <button 
+                class="filter-btn" 
+                onclick="setFilter('completed', this)"> 
+                Completed 
+            </button>
+ 
+            <button 
+                class="filter-btn" 
+                onclick="setFilter('high', this)"> 
+                🔴 High Priority 
+            </button> 
+            <select 
+    id="sortSelect" 
+    class="sort-select"  
+    aria-label="Sort tasks" 
+    onchange="changeSort()"> 
+ 
+ 
+                <option value="newest"> 
+                    Newest First 
+                </option> 
+ 
+                <option value="due"> 
+                    Due Date 
+                </option> 
+ 
+                <option value="priority"> 
+                    Priority 
+                </option> 
+ 
+            </select> 
+ 
+        </div> 
+        <!-- CALENDAR --> 
+<div id="calendarSection" class="calendar-section"> 
+ 
+    <div class="calendar-header"> 
+        <button onclick="changeMonth(-1)">←</button> 
+ 
+        <h2 id="calendarMonth"></h2> 
+ 
+       <button onclick="changeMonth(1)">→</button> 
+    </div> 
+ 
+    <div class="calendar-weekdays"> 
+        <div>Sun</div> 
+        <div>Mon</div> 
+        <div>Tue</div> 
+        <div>Wed</div> 
+        <div>Thu</div> 
+        <div>Fri</div> 
+        <div>Sat</div> 
+    </div> 
+ 
+    <div id="calendarGrid" class="calendar-grid"></div> 
+    <!-- CALENDAR TASK PANEL --> 
+ 
+<div 
+    id="calendarTaskPanel" 
+    class="calendar-task-panel" 
+> 
+ 
+    <div class="calendar-task-panel-header"> 
+ 
+        <div> 
+            <span class="calendar-panel-label"> 
+                TASKS FOR 
+            </span> 
+ 
+            <h3 id="calendarTaskPanelTitle"> 
+                Selected Date 
+            </h3> 
+        </div> 
+ 
+        <button 
+            type="button" 
+            class="calendar-close-btn" 
+            onclick="closeCalendarTaskPanel()" 
+            aria-label="Close calendar task panel" 
+        > 
+            × 
+        </button> 
+ 
+    </div> 
+ 
+ 
+    <div 
+        id="calendarTaskPanelContent" 
+        class="calendar-task-panel-content" 
+    ></div> 
+ 
+</div> 
+ 
+</div> 
+ 
+        <!-- ================= TASKS ================= --> 
+        <div class="tasks-section"> 
+ 
+            <h2> 
+                Today's Tasks 
+            </h2> 
+ 
+            <div id="taskList"> 
+ 
+                <div class="empty-message"> 
+                    Loading tasks... 
+                </div> 
+ 
+            </div> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <!-- ================= JAVASCRIPT ================= --> 
+ 
+    <script src="dashboard.js"></script> 
+ 
+</body> 
+ 
+</html>

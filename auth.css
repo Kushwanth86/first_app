@@ -1,0 +1,1653 @@
+/* =========================================================
+   MY TASKS — AUTHENTICATION PAGE
+   Professional SaaS Login Design
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef1ff 0%,
+            #f7f8ff 50%,
+            #ffffff 100%
+        );
+
+    color: #111827;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.auth-page {
+
+    width: min(1380px, calc(100% - 48px));
+
+    min-height: 760px;
+
+    margin: 40px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(420px, 0.95fr);
+
+    background: #ffffff;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.12),
+        0 10px 30px rgba(15, 23, 42, 0.06);
+
+    position: relative;
+}
+
+
+/* =========================================================
+   LEFT BRAND SECTION
+========================================================= */
+
+.auth-brand {
+
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 760px;
+
+    padding: 64px 58px;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(84, 62, 255, 0.42),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(67, 56, 202, 0.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #090f2f 0%,
+            #111936 48%,
+            #171d49 100%
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   BRAND CONTENT
+========================================================= */
+
+.brand-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 520px;
+}
+
+
+.brand-content h1 {
+
+    font-size: clamp(42px, 4vw, 64px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2.5px;
+
+    margin-bottom: 24px;
+}
+
+
+.brand-content h1 span {
+
+    display: inline-block;
+
+    margin-left: 6px;
+
+    font-size: 0.8em;
+
+    transform: rotate(-4deg);
+}
+
+
+.brand-content p {
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    font-weight: 400;
+
+    letter-spacing: -0.2px;
+}
+
+
+/* =========================================================
+   DASHBOARD PREVIEW
+========================================================= */
+
+.dashboard-preview {
+
+    position: absolute;
+
+    z-index: 4;
+
+    left: 58px;
+
+    right: 48px;
+
+    bottom: 42px;
+
+    height: 430px;
+
+    display: flex;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(34, 42, 91, 0.98),
+            rgba(17, 24, 61, 0.98)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.42),
+        0 0 60px rgba(91, 72, 255, 0.18);
+
+    transform:
+        perspective(1400px)
+        rotateX(1deg)
+        rotateY(-2deg);
+}
+
+
+/* =========================================================
+   PREVIEW SIDEBAR
+========================================================= */
+
+.preview-sidebar {
+
+    width: 145px;
+
+    flex-shrink: 0;
+
+    padding: 22px 14px;
+
+    background:
+        rgba(5, 10, 35, 0.46);
+
+    border-right:
+        1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.preview-logo {
+
+    width: 38px;
+
+    height: 38px;
+
+    margin: 0 auto 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    font-size: 19px;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            135deg,
+            #635bff,
+            #8b5cf6
+        );
+
+    box-shadow:
+        0 8px 20px rgba(99, 91, 255, 0.35);
+}
+
+
+.preview-nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    height: 40px;
+
+    padding: 0 11px;
+
+    margin-bottom: 7px;
+
+    border-radius: 9px;
+
+    color:
+        rgba(255, 255, 255, 0.52);
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+.preview-nav span {
+
+    width: 16px;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+.preview-nav.active {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(93, 82, 255, 0.85),
+            rgba(92, 72, 220, 0.5)
+        );
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 7px 18px rgba(76, 58, 190, 0.18);
+}
+
+
+/* =========================================================
+   PREVIEW MAIN
+========================================================= */
+
+.preview-main {
+
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 25px 25px 22px;
+
+    overflow: hidden;
+}
+
+
+.preview-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+
+.preview-small {
+
+    display: block;
+
+    color:
+        rgba(255, 255, 255, 0.46);
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+}
+
+
+.preview-top h3 {
+
+    color: #ffffff;
+
+    font-size: 19px;
+
+    font-weight: 650;
+
+    letter-spacing: -0.4px;
+}
+
+
+.preview-avatar {
+
+    width: 35px;
+
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #635bff,
+            #7c3aed
+        );
+
+    border:
+        2px solid rgba(255, 255, 255, 0.14);
+}
+
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.preview-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 11px;
+
+    margin-bottom: 16px;
+}
+
+
+.stat-card {
+
+    min-width: 0;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.075);
+}
+
+
+.stat-card span {
+
+    display: block;
+
+    color:
+        rgba(255, 255, 255, 0.47);
+
+    font-size: 9px;
+
+    margin-bottom: 7px;
+}
+
+
+.stat-card strong {
+
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    line-height: 1;
+
+    margin-bottom: 6px;
+}
+
+
+.stat-card small {
+
+    color: #75e6a7;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   PREVIEW BOTTOM
+========================================================= */
+
+.preview-bottom {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(130px, 0.85fr);
+
+    gap: 12px;
+}
+
+
+.preview-tasks,
+.preview-calendar {
+
+    min-width: 0;
+
+    padding: 15px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.preview-heading {
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 650;
+
+    margin-bottom: 13px;
+}
+
+
+/* =========================================================
+   TASK ROWS
+========================================================= */
+
+.task-row {
+
+    display: grid;
+
+    grid-template-columns:
+        18px minmax(0, 1fr) auto;
+
+    align-items: center;
+
+    gap: 6px;
+
+    min-height: 35px;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-size: 8.5px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.045);
+}
+
+
+.task-row:last-child {
+
+    border-bottom: none;
+}
+
+
+.task-check {
+
+    width: 15px;
+
+    height: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color:
+        rgba(255, 255, 255, 0.42);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.22);
+
+    border-radius: 4px;
+
+    font-size: 8px;
+}
+
+
+.task-check.completed {
+
+    color: #ffffff;
+
+    border-color: #54d99b;
+
+    background: #28b978;
+}
+
+
+.task-row b {
+
+    padding: 3px 6px;
+
+    border-radius: 20px;
+
+    font-size: 7px;
+
+    font-weight: 600;
+}
+
+
+.priority-high {
+
+    color: #ff9baf;
+
+    background:
+        rgba(255, 82, 118, 0.12);
+}
+
+
+.priority-medium {
+
+    color: #9db6ff;
+
+    background:
+        rgba(86, 113, 255, 0.13);
+}
+
+
+.priority-low {
+
+    color: #78e5a5;
+
+    background:
+        rgba(56, 189, 120, 0.12);
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+.calendar-month {
+
+    color:
+        rgba(255, 255, 255, 0.52);
+
+    font-size: 8px;
+
+    margin-bottom: 12px;
+}
+
+
+.calendar-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap: 5px;
+
+    text-align: center;
+}
+
+
+.calendar-grid span {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 17px;
+
+    color:
+        rgba(255, 255, 255, 0.5);
+
+    font-size: 7px;
+}
+
+
+.calendar-grid span:nth-child(-n+7) {
+
+    color:
+        rgba(255, 255, 255, 0.27);
+
+    font-weight: 600;
+}
+
+
+.calendar-grid .today {
+
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #635bff,
+            #8b5cf6
+        );
+
+    box-shadow:
+        0 4px 12px rgba(99, 91, 255, 0.35);
+}
+
+
+/* =========================================================
+   DECORATIVE GLOW
+========================================================= */
+
+.brand-glow {
+
+    position: absolute;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    filter: blur(50px);
+
+    opacity: 0.35;
+}
+
+
+.glow-one {
+
+    width: 220px;
+
+    height: 220px;
+
+    right: -80px;
+
+    top: 80px;
+
+    background: #5548ff;
+}
+
+
+.glow-two {
+
+    width: 180px;
+
+    height: 180px;
+
+    left: -80px;
+
+    bottom: 20px;
+
+    background: #3423b8;
+}
+
+
+/* =========================================================
+   RIGHT AUTH SECTION
+========================================================= */
+
+.auth-form {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #ffffff;
+
+    padding: 55px;
+}
+
+
+.form-content {
+
+    width: min(100%, 500px);
+}
+
+
+.form-header {
+
+    margin-bottom: 37px;
+}
+
+
+.form-header h2 {
+
+    color: #10172d;
+
+    font-size: 43px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    letter-spacing: -1.8px;
+
+    margin-bottom: 12px;
+}
+
+
+.form-header h2 span {
+
+    display: inline-block;
+
+    font-size: 0.8em;
+}
+
+
+.subtitle {
+
+    color: #71809d;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   INPUT GROUP
+========================================================= */
+
+.input-group {
+
+    margin-bottom: 23px;
+}
+
+
+.input-group label {
+
+    display: block;
+
+    color: #18213a;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    margin-bottom: 9px;
+}
+
+
+.input-wrapper {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+.input-icon {
+
+    position: absolute;
+
+    left: 18px;
+
+    z-index: 2;
+
+    color: #8a97b2;
+
+    font-size: 17px;
+
+    pointer-events: none;
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 62px;
+
+    padding:
+        0 52px 0 50px;
+
+    border:
+        1px solid #d8dfec;
+
+    border-radius: 14px;
+
+    outline: none;
+
+    color: #17213b;
+
+    background: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.input-wrapper input::placeholder {
+
+    color: #9ba7bd;
+}
+
+
+.input-wrapper input:hover {
+
+    border-color: #c3ccdc;
+}
+
+
+.input-wrapper input:focus {
+
+    border-color: #635bff;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 91, 255, 0.10);
+}
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #7d8aa5;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.password-toggle:hover {
+
+    color: #5148d8;
+
+    background: #f1f2ff;
+}
+
+
+/* =========================================================
+   FORM OPTIONS
+========================================================= */
+
+.form-options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin:
+        2px 0 28px;
+}
+
+
+.remember {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #64718b;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+.remember input {
+
+    width: 16px;
+
+    height: 16px;
+
+    accent-color: #5b52ed;
+
+    cursor: pointer;
+}
+
+
+.forgot-password {
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #5b50e8;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    cursor: pointer;
+}
+
+
+.forgot-password:hover {
+
+    color: #4037c8;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   AUTH BUTTONS
+========================================================= */
+
+.signup-btn,
+.login-btn {
+
+    width: 100%;
+
+    height: 62px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.signup-btn {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #10172d,
+            #17213b
+        );
+
+    box-shadow:
+        0 10px 25px rgba(16, 23, 45, 0.18);
+
+    margin-bottom: 13px;
+}
+
+
+.signup-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(16, 23, 45, 0.25);
+}
+
+
+.login-btn {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5549e8,
+            #6758f4
+        );
+
+    box-shadow:
+        0 10px 25px rgba(91, 80, 232, 0.22);
+}
+
+
+.login-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(91, 80, 232, 0.30);
+}
+
+
+.signup-btn:active,
+.login-btn:active {
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   AUTH MESSAGE
+========================================================= */
+
+.auth-message {
+
+    min-height: 22px;
+
+    margin-top: 16px;
+
+    text-align: center;
+
+    color: #64718b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.auth-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 35px;
+
+    color: #9aa5b9;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .auth-page {
+
+        width: min(940px, calc(100% - 30px));
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+        min-height: 700px;
+    }
+
+
+    .auth-brand {
+
+        padding: 48px 38px;
+
+        min-height: 700px;
+    }
+
+
+    .dashboard-preview {
+
+        left: 38px;
+
+        right: 30px;
+
+        bottom: 30px;
+
+        height: 370px;
+    }
+
+
+    .preview-sidebar {
+
+        width: 120px;
+    }
+
+
+    .preview-nav {
+
+        font-size: 9px;
+    }
+
+
+    .auth-form {
+
+        padding: 40px;
+    }
+
+
+    .form-header h2 {
+
+        font-size: 37px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    body {
+
+        background: #ffffff;
+    }
+
+
+    .auth-page {
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        margin: 0;
+
+        border-radius: 0;
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .auth-brand {
+
+        min-height: 540px;
+
+        padding: 45px 30px;
+    }
+
+
+    .dashboard-preview {
+
+        left: 30px;
+
+        right: 30px;
+
+        bottom: 30px;
+
+        height: 290px;
+    }
+
+
+    .preview-sidebar {
+
+        width: 105px;
+
+        padding: 15px 9px;
+    }
+
+
+    .preview-main {
+
+        padding: 18px;
+    }
+
+
+    .preview-stats {
+
+        gap: 7px;
+    }
+
+
+    .stat-card {
+
+        padding: 10px;
+    }
+
+
+    .stat-card strong {
+
+        font-size: 18px;
+    }
+
+
+    .preview-bottom {
+
+        grid-template-columns: 1fr 0.8fr;
+    }
+
+
+    .auth-form {
+
+        padding: 55px 30px;
+
+        min-height: 600px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .auth-brand {
+
+        min-height: 430px;
+
+        padding: 38px 24px;
+    }
+
+
+    .brand-content h1 {
+
+        font-size: 38px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .brand-content p {
+
+        font-size: 15px;
+
+        line-height: 1.6;
+    }
+
+
+    .dashboard-preview {
+
+        left: 20px;
+
+        right: 20px;
+
+        bottom: 20px;
+
+        height: 205px;
+
+        border-radius: 16px;
+    }
+
+
+    .preview-sidebar {
+
+        width: 72px;
+
+        padding: 10px 6px;
+    }
+
+
+    .preview-logo {
+
+        width: 28px;
+
+        height: 28px;
+
+        font-size: 13px;
+
+        margin-bottom: 15px;
+    }
+
+
+    .preview-nav {
+
+        justify-content: center;
+
+        height: 32px;
+
+        padding: 0;
+
+        font-size: 0;
+    }
+
+
+    .preview-nav span {
+
+        font-size: 13px;
+    }
+
+
+    .preview-main {
+
+        padding: 12px;
+    }
+
+
+    .preview-top {
+
+        margin-bottom: 10px;
+    }
+
+
+    .preview-small {
+
+        font-size: 7px;
+    }
+
+
+    .preview-top h3 {
+
+        font-size: 12px;
+    }
+
+
+    .preview-avatar {
+
+        width: 25px;
+
+        height: 25px;
+
+        font-size: 9px;
+    }
+
+
+    .preview-stats {
+
+        margin-bottom: 8px;
+    }
+
+
+    .stat-card {
+
+        padding: 7px;
+
+        border-radius: 7px;
+    }
+
+
+    .stat-card span {
+
+        font-size: 6px;
+
+        margin-bottom: 4px;
+    }
+
+
+    .stat-card strong {
+
+        font-size: 13px;
+
+        margin-bottom: 2px;
+    }
+
+
+    .stat-card small {
+
+        font-size: 6px;
+    }
+
+
+    .preview-bottom {
+
+        gap: 6px;
+    }
+
+
+    .preview-tasks,
+    .preview-calendar {
+
+        padding: 8px;
+
+        border-radius: 7px;
+    }
+
+
+    .preview-heading {
+
+        font-size: 7px;
+
+        margin-bottom: 5px;
+    }
+
+
+    .task-row {
+
+        min-height: 20px;
+
+        font-size: 5.5px;
+
+        grid-template-columns:
+            10px minmax(0, 1fr) auto;
+    }
+
+
+    .task-check {
+
+        width: 9px;
+
+        height: 9px;
+
+        font-size: 5px;
+    }
+
+
+    .task-row b {
+
+        padding: 2px 3px;
+
+        font-size: 4.5px;
+    }
+
+
+    .calendar-month {
+
+        font-size: 5.5px;
+
+        margin-bottom: 5px;
+    }
+
+
+    .calendar-grid {
+
+        gap: 2px;
+    }
+
+
+    .calendar-grid span {
+
+        min-height: 9px;
+
+        font-size: 4.5px;
+    }
+
+
+    .auth-form {
+
+        padding: 45px 24px;
+    }
+
+
+    .form-header {
+
+        margin-bottom: 30px;
+    }
+
+
+    .form-header h2 {
+
+        font-size: 34px;
+    }
+
+
+    .subtitle {
+
+        font-size: 14px;
+    }
+
+
+    .input-wrapper input {
+
+        height: 56px;
+
+        border-radius: 12px;
+    }
+
+
+    .signup-btn,
+    .login-btn {
+
+        height: 56px;
+
+        border-radius: 12px;
+    }
+
+
+    .form-options {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        margin-bottom: 22px;
+    }
+
+
+    .auth-footer {
+
+        flex-wrap: wrap;
+
+        text-align: center;
+
+        margin-top: 28px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+input:focus-visible {
+
+    outline:
+        3px solid rgba(99, 91, 255, 0.25);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+
+}

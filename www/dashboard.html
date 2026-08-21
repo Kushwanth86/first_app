@@ -72,7 +72,7 @@
         </section>
 
         <!-- ================= ADD TASK ================= -->
-        <form id="task-form" class="task-form" onsubmit="return addTask(event);" aria-label="Add new task">
+        <form id="task-form" class="task-form" onsubmit="addTask(event); return false;" aria-label="Add new task">
             <div class="form-group">
                 <label for="taskInput" class="form-label">Task Title</label>
                 <input
@@ -132,7 +132,6 @@
                         id="searchInput"
                         placeholder="🔍 Search tasks..."
                         aria-label="Search tasks"
-                        oninput="searchTasks()"
                     />
                 </div>
 

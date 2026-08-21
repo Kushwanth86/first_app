@@ -1678,7 +1678,8 @@ body {
 /* ==========================================================
    LANDING PAGE (index.html) - overrides
    ========================================================== */
-header {
+/* Only apply landing-page header styles when .main-header is NOT present */
+header:not(.main-header) {
     text-align: center;
     padding: 40px 0;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -1687,12 +1688,12 @@ header {
     border-radius: 0 0 var(--radius-xl) var(--radius-xl);
 }
 
-header h1 {
+header:not(.main-header) h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
 }
 
-header p {
+header:not(.main-header) p {
     font-size: 1.2rem;
     opacity: 0.9;
 }

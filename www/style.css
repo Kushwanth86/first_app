@@ -1,3886 +1,1387 @@
-/* ==========================================
-   GENERAL
-========================================== */
+/* ==========================================================
+   MY TASKS — DASHBOARD STYLES
+   Modern Glassmorphism + Gradient Design
+   ========================================================== */
 
-* {
+/* ==========================================================
+   CSS VARIABLES
+   ========================================================== */
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary: #8b5cf6;
+    --accent: #a78bfa;
+    --success: #10b981;
+    --success-light: #34d399;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --danger-light: #f87171;
+
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    --bg-surface: rgba(255, 255, 255, 0.04);
+    --bg-card: rgba(255, 255, 255, 0.06);
+    --bg-card-hover: rgba(255, 255, 255, 0.1);
+    --bg-input: rgba(255, 255, 255, 0.08);
+
+    --border: rgba(255, 255, 255, 0.1);
+    --border-light: rgba(255, 255, 255, 0.06);
+    --border-focus: rgba(99, 102, 241, 0.6);
+
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-accent: #c4b5fd;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.15);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.15s ease;
+}
+
+/* ==========================================================
+   RESET & BASE
+   ========================================================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    margin: 0;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #eef2ff,
-            #f8fafc
-        );
-
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
     min-height: 100vh;
-
-    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-
-/* ==========================================
-   CONTAINER
-========================================== */
-
-.container {
-
-    width: min(
-        1100px,
-        92%
-    );
-
-    margin: 50px auto;
-
-    background: white;
-
-    border-radius: 28px;
-
-    padding: 40px;
-
-    box-shadow:
-        0 25px 60px
-        rgba(15, 23, 42, 0.12);
-}
-
-
-/* ==========================================
-   HEADER
-========================================== */
-
-.header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 35px;
-}
-
-.header h1 {
-
-    margin: 0;
-
-    font-size: 40px;
-}
-
-.user-email {
-
-    margin-top: 8px;
-
-    color: #64748b;
-
-    font-size: 16px;
-}
-
-
-/* ==========================================
-   LOGOUT
-========================================== */
-
-.logout-btn {
-
-    border: none;
-
-    background: #ef4444;
-
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 10000;
+    padding: 8px 16px;
+    background: var(--primary);
     color: white;
-
-    padding: 14px 24px;
-
-    border-radius: 14px;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
+    border-radius: var(--radius-sm);
+    text-decoration: none;
     font-weight: 600;
+    transition: top var(--transition);
+}
+.skip-link:focus {
+    top: 16px;
 }
 
-.logout-btn:hover {
-
-    background: #dc2626;
+/* Visually hidden but accessible */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
-
-/* ==========================================
-   STATISTICS
-========================================== */
-
-.stats {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
-
-    margin-bottom: 30px;
+/* ==========================================================
+   CONTAINER
+   ========================================================== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+    animation: fadeInUp 0.6s ease;
 }
 
-.stat-card {
-
-    padding: 25px;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 20px;
-
-    text-align: center;
-
-    background: #f8fafc;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.stat-number {
-
-    font-size: 36px;
-
-    font-weight: 700;
-
-    margin-bottom: 5px;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.stat-label {
-
-    color: #64748b;
-
-    font-size: 15px;
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-
-/* ==========================================
-   PROGRESS
-========================================== */
-
-.progress-section {
-
-    margin-bottom: 30px;
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
-.progress-header {
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
 
+/* ==========================================================
+   HEADER
+   ========================================================== */
+.main-header {
     display: flex;
-
+    align-items: center;
     justify-content: space-between;
-
-    margin-bottom: 10px;
-
-    font-weight: 600;
-}
-
-.progress-bar {
-
-    width: 100%;
-
-    height: 14px;
-
-    background: #e2e8f0;
-
-    border-radius: 20px;
-
+    padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-md), var(--shadow-glow);
+    position: relative;
     overflow: hidden;
 }
 
-.progress-fill {
-
-    height: 100%;
-
-    width: 0%;
-
-    background: #0f172a;
-
-    border-radius: 20px;
-
-    transition:
-        width 0.3s ease;
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
 }
 
+.header-content h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ffffff, #c4b5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+}
 
-/* ==========================================
-   TASK FORM
-========================================== */
+.user-email {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
 
-.task-form {
+.logout-btn {
+    padding: 10px 24px;
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger-light);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    backdrop-filter: blur(10px);
+}
 
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: rgba(239, 68, 68, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================
+   STATISTICS
+   ========================================================== */
+.stats-section {
+    margin-bottom: 24px;
+}
+
+.stats {
     display: grid;
-
-    grid-template-columns:
-        1fr
-        145px
-        190px
-        60px;
-
-    gap: 12px;
-
-    margin-bottom: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
 }
 
-.task-form input,
-.task-form select {
-
-    height: 60px;
-
-    border:
-        1px solid #cbd5e1;
-
-    border-radius: 14px;
-
-    padding: 0 18px;
-
-    font-size: 16px;
-
-    background: white;
-
-    color: #0f172a;
-
-    outline: none;
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 24px 20px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
-.task-form input:focus,
-.task-form select:focus {
-
-    border-color: #0f172a;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(15, 23, 42, 0.08);
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity var(--transition);
 }
 
-
-/* ==========================================
-   ADD BUTTON
-========================================== */
-
-.add-btn {
-
-    border: none;
-
-    background: #0f172a;
-
-    color: white;
-
-    border-radius: 14px;
-
-    font-size: 30px;
-
-    cursor: pointer;
-
-    font-weight: 400;
+.stat-card:hover {
+    transform: translateY(-3px);
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow-md);
 }
 
-.add-btn:hover {
-
-    background: #1e293b;
+.stat-card:hover::before {
+    opacity: 1;
 }
 
-
-/* ==========================================
-   FILTER / SORT
-========================================== */
-
-.task-controls {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    margin-bottom: 35px;
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 4px;
 }
 
-.filter-btn {
-
-    border:
-        1px solid #cbd5e1;
-
-    background: white;
-
-    color: #475569;
-
-    padding: 10px 16px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
     font-weight: 600;
 }
 
-.filter-btn:hover {
-
-    background: #f1f5f9;
+/* ==========================================================
+   PROGRESS BAR
+   ========================================================== */
+.progress-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
-.filter-btn.active {
-
-    background: #0f172a;
-
-    color: white;
-
-    border-color: #0f172a;
-}
-
-.sort-select {
-
-    margin-left: auto;
-
-    height: 42px;
-
-    padding:
-        0 14px;
-
-    border:
-        1px solid #cbd5e1;
-
-    border-radius: 12px;
-
-    background: white;
-
-    font-size: 14px;
-
-    color: #0f172a;
-
-    cursor: pointer;
-}
-
-
-/* ==========================================
-   TASK SECTION
-========================================== */
-
-.tasks-section h2 {
-
-    margin-bottom: 20px;
-
-    font-size: 28px;
-}
-
-
-/* ==========================================
-   TASK ITEM
-========================================== */
-
-.task-item {
-
+.progress-header {
     display: flex;
-
-    justify-content: space-between;
-
     align-items: center;
-
-    gap: 20px;
-
-    border:
-        1px solid #e2e8f0;
-
-    border-radius: 18px;
-
-    padding: 20px;
-
-    margin-bottom: 14px;
-
-    background: white;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
 }
 
-.task-item:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 25px
-        rgba(15, 23, 42, 0.08);
+#progressPercent {
+    color: var(--primary-light);
+    font-weight: 700;
+    font-size: 1rem;
 }
 
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+}
 
-/* ==========================================
-   TASK CONTENT
-========================================== */
-
-.task-content {
-
-    flex: 1;
-
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    border-radius: var(--radius-full);
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
     min-width: 0;
 }
 
-.task-title {
-
-    font-size: 18px;
-
-    font-weight: 500;
-
-    margin-bottom: 10px;
-
-    word-break: break-word;
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
 }
 
-.task-details {
+/* ==========================================================
+   TASK FORM
+   ========================================================== */
+.task-form {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 12px;
+    align-items: end;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
 
+.task-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+}
+
+.task-form .form-group {
     display: flex;
-
-    gap: 15px;
-
-    flex-wrap: wrap;
-
-    color: #64748b;
-
-    font-size: 14px;
+    flex-direction: column;
+    gap: 4px;
 }
 
+.task-form .form-group:first-child {
+    grid-column: 1 / -1;
+}
 
-/* ==========================================
-   PRIORITY
-========================================== */
-
-.priority-high {
-
-    color: #dc2626;
-
+.form-label {
+    font-size: 0.75rem;
     font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.priority-medium {
-
-    color: #ca8a04;
-
-    font-weight: 600;
+.form-text {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 2px;
 }
 
-.priority-low {
-
-    color: #16a34a;
-
-    font-weight: 600;
+.task-form input[type="text"],
+.task-form select,
+.task-form input[type="date"] {
+    padding: 12px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all var(--transition);
+    outline: none;
 }
 
-
-/* ==========================================
-   DUE DATE
-========================================== */
-
-.due-today {
-
-    color: #d97706;
-
-    font-weight: 600;
+.task-form input[type="text"]:focus,
+.task-form select:focus,
+.task-form input[type="date"]:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.overdue {
+.task-form input::placeholder {
+    color: var(--text-muted);
+}
 
-    color: #dc2626;
+.task-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8'%3E%3Cpath d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
 
+.task-form select option {
+    background: #1e1b4b;
+    color: white;
+}
+
+.task-form input[type="date"] {
+    color-scheme: dark;
+}
+
+.add-btn {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1.5rem;
     font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
-.due-completed {
-
-    color: #16a34a;
-
-    font-weight: 600;
+.add-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.45);
 }
 
-
-/* ==========================================
-   COMPLETED
-========================================== */
-
-.task-item.completed
-.task-title {
-
-    text-decoration:
-        line-through;
-
-    color: #94a3b8;
+.add-btn:active {
+    transform: translateY(0) scale(0.98);
 }
 
-.task-item.completed {
-
-    background: #f8fafc;
+/* ==========================================================
+   TASK CONTROLS / FILTERS
+   ========================================================== */
+.task-controls-section {
+    margin-bottom: 24px;
 }
 
-
-/* ==========================================
-   ACTIONS
-========================================== */
-
-.task-actions {
-
+.task-controls {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
     display: flex;
-
+    flex-wrap: wrap;
     gap: 10px;
-
-    flex-shrink: 0;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
-
-.complete-btn {
-
-    border: none;
-
-    background: #dcfce7;
-
-    color: #166534;
-
-    padding: 11px 18px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-    font-weight: 600;
-}
-
-.complete-btn:hover {
-
-    background: #bbf7d0;
-}
-
-.delete-btn {
-
-    border: none;
-
-    background: #fee2e2;
-
-    color: #dc2626;
-
-    padding: 11px 15px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    font-size: 16px;
-}
-
-.delete-btn:hover {
-
-    background: #fecaca;
-}
-
-
-/* ==========================================
-   EMPTY
-========================================== */
-
-.empty-message {
-
-    text-align: center;
-
-    color: #64748b;
-
-    padding: 40px;
-
-    border:
-        1px dashed #cbd5e1;
-
-    border-radius: 18px;
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 800px) {
-
-    .container {
-
-        margin: 20px auto;
-
-        padding: 25px;
-    }
-
-    .header {
-
-        align-items: flex-start;
-
-        gap: 20px;
-    }
-
-    .header h1 {
-
-        font-size: 30px;
-    }
-
-    .stats {
-
-        grid-template-columns: 1fr;
-    }
-
-    .task-form {
-
-        grid-template-columns: 1fr;
-    }
-
-    .add-btn {
-
-        height: 55px;
-    }
-
-    .task-item {
-
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-    .task-actions {
-
-        width: 100%;
-
-        justify-content: flex-end;
-    }
-
-    .sort-select {
-
-        margin-left: 0;
-
-        width: 100%;
-    }
-
-    .filter-btn {
-
-        flex: 1;
-    }
-}
-/* ==========================================
-   SEARCH
-========================================== */
 
 .search-box {
-    margin-bottom: 18px;
+    flex: 1;
+    min-width: 180px;
 }
 
 .search-box input {
     width: 100%;
-    height: 52px;
-
-    border: 1px solid #cbd5e1;
-    border-radius: 14px;
-
-    padding: 0 18px;
-
-    font-size: 16px;
-
+    padding: 10px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.88rem;
     outline: none;
-
-    background: white;
-    color: #0f172a;
+    transition: all var(--transition);
 }
 
 .search-box input:focus {
-    border-color: #0f172a;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(15, 23, 42, 0.08);
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
-.edit-btn {
-    border: none;
 
-    background: #e0e7ff;
-    color: #3730a3;
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
 
-    padding: 11px 18px;
+.filter-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
 
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
+.filter-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.8rem;
     font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
 }
 
-.edit-btn:hover {
-    background: #c7d2fe;
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
 }
-/* ==========================================
-   CALENDAR
-========================================== */
 
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+}
+
+.calendar-btn {
+    padding: 8px 16px;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: var(--radius-full);
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.calendar-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    transform: translateY(-1px);
+}
+
+.sort-group {
+    margin-left: auto;
+}
+
+.sort-select {
+    padding: 8px 32px 8px 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8'%3E%3Cpath d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.sort-select:focus {
+    border-color: var(--border-focus);
+}
+
+.sort-select option {
+    background: #1e1b4b;
+    color: white;
+}
+
+/* ==========================================================
+   TASK LIST
+   ========================================================== */
+.tasks-section {
+    margin-bottom: 24px;
+}
+
+.tasks-section h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ==========================================================
+   TASK ITEM
+   ========================================================== */
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all var(--transition);
+    animation: slideDown 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.task-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--primary);
+    border-radius: 0 3px 3px 0;
+    transition: background var(--transition);
+}
+
+.task-item:hover {
+    background: var(--bg-card-hover);
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
+}
+
+.task-item.completed {
+    opacity: 0.65;
+}
+
+.task-item.completed::before {
+    background: var(--success);
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.task-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    word-break: break-word;
+}
+
+.task-details {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.task-details span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+}
+
+/* ==========================================================
+   PRIORITY BADGES
+   ========================================================== */
+.priority-high {
+    color: #fca5a5 !important;
+    background: rgba(239, 68, 68, 0.15) !important;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.priority-medium {
+    color: #fcd34d !important;
+    background: rgba(245, 158, 11, 0.15) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.priority-low {
+    color: #86efac !important;
+    background: rgba(16, 185, 129, 0.15) !important;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+/* ==========================================================
+   DUE DATE STATUS
+   ========================================================== */
+.overdue {
+    color: #fca5a5 !important;
+    background: rgba(239, 68, 68, 0.15) !important;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.due-today {
+    color: #fcd34d !important;
+    background: rgba(245, 158, 11, 0.15) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.due-future {
+    color: #93c5fd !important;
+    background: rgba(59, 130, 246, 0.12) !important;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.due-completed {
+    color: #86efac !important;
+    background: rgba(16, 185, 129, 0.12) !important;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.no-due-date {
+    color: var(--text-muted) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================
+   TASK ACTIONS
+   ========================================================== */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.complete-btn {
+    padding: 8px 18px;
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--success-light);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.complete-btn:hover {
+    background: rgba(16, 185, 129, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(16, 185, 129, 0.2);
+}
+
+.delete-btn {
+    padding: 8px 14px;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-light);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.delete-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(239, 68, 68, 0.2);
+}
+
+/* ==========================================================
+   EMPTY STATE
+   ========================================================== */
+.empty-message {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+    background: var(--bg-card);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+    animation: fadeIn 0.5s ease;
+}
+
+/* ==========================================================
+   CALENDAR SECTION
+   ========================================================== */
 .calendar-section {
-    margin-bottom: 35px;
-    padding: 25px;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    background: #f8fafc;
+    display: none;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: fadeInUp 0.4s ease;
 }
-
-
-/* CALENDAR HEADER */
 
 .calendar-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .calendar-header h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #0f172a;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
 }
 
 .calendar-header button {
-    width: 42px;
-    height: 42px;
-
-    border: none;
-    border-radius: 10px;
-
-    background: #0f172a;
-    color: white;
-
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: all var(--transition);
 }
 
 .calendar-header button:hover {
-    background: #1e293b;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text-primary);
+    transform: scale(1.05);
 }
-
-
-/* WEEKDAYS */
 
 .calendar-weekdays {
     display: grid;
-
-    grid-template-columns:
-        repeat(7, 1fr);
-
-    gap: 8px;
-
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
     margin-bottom: 8px;
 }
 
 .calendar-weekdays div {
     text-align: center;
-
-    font-size: 13px;
+    font-size: 0.72rem;
     font-weight: 700;
-
-    color: #64748b;
-
-    padding: 10px 0;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 0;
 }
-
-
-/* CALENDAR GRID */
 
 .calendar-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(7, 1fr);
-
-    gap: 8px;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
 }
-
-
-/* DAY */
 
 .calendar-day {
     min-height: 90px;
-
-    padding: 10px;
-
-    background: white;
-
-    border:
-        1px solid #e2e8f0;
-
-    border-radius: 12px;
-
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
     cursor: pointer;
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        border-color 0.15s ease;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
 .calendar-day:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 5px 15px
-        rgba(15, 23, 42, 0.08);
-
-    border-color: #94a3b8;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--border);
 }
-
-
-/* EMPTY DAYS */
 
 .calendar-day.empty {
     background: transparent;
-    border: none;
     cursor: default;
 }
 
-.calendar-day.empty:hover {
-    transform: none;
-    box-shadow: none;
+.calendar-day.today {
+    background: rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.3);
 }
 
-
-/* DATE NUMBER */
+.calendar-day.selected {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+}
 
 .calendar-date {
-    font-size: 14px;
-
+    font-size: 0.85rem;
     font-weight: 700;
-
-    margin-bottom: 7px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
 }
 
-
-/* TODAY */
-
-.calendar-day.today {
-    border:
-        2px solid #0f172a;
-}
-
-
-/* SELECTED */
-
-.calendar-day.selected {
-    background: #eef2ff;
-
-    border:
-        2px solid #6366f1;
-}
-
-
-/* TASK ON CALENDAR */
-
-.calendar-task {
-    display: block;
-
-    margin-top: 5px;
-
-    padding: 4px 6px;
-
-    border-radius: 6px;
-
-    font-size: 11px;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    background: #e2e8f0;
-
-    color: #0f172a;
-}
-
-
-/* PRIORITY COLORS */
-
-.calendar-task.high {
-    background: #fee2e2;
-    color: #b91c1c;
-}
-
-.calendar-task.medium {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.calendar-task.low {
-    background: #dcfce7;
-    color: #166534;
-}
-
-
-/* COMPLETED TASK */
-
-.calendar-task.completed {
-    text-decoration: line-through;
-    opacity: 0.55;
-}
-
-
-/* CALENDAR BUTTON */
-
-.calendar-btn {
-    border: none;
-
-    background: #0f172a;
-
-    color: white;
-
-    padding: 12px 18px;
-
-    border-radius: 12px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.calendar-btn:hover {
-    background: #1e293b;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 800px) {
-
-    .calendar-section {
-        padding: 15px;
-    }
-
-    .calendar-grid {
-        gap: 4px;
-    }
-
-    .calendar-weekdays {
-        gap: 4px;
-    }
-
-    .calendar-day {
-        min-height: 65px;
-        padding: 6px;
-    }
-
-    .calendar-date {
-        font-size: 12px;
-    }
-
-    .calendar-task {
-        font-size: 9px;
-        padding: 3px;
-    }
-
-    .calendar-weekdays div {
-        font-size: 10px;
-    }
-}
-.calendar-section {
-    display: none;
-}
-/* ==========================================
-   CALENDAR TASK PANEL
-========================================== */
-
-.calendar-task-panel {
-
-    margin-top: 25px;
-
-    background: white;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    display: none;
-
-    box-shadow:
-        0 10px 30px
-        rgba(15, 23, 42, 0.08);
-
-}
-
-
-.calendar-task-panel.visible {
-
-    display: block;
-
-    animation:
-        calendarPanelIn
-        0.25s
-        ease;
-
-}
-
-
-@keyframes calendarPanelIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(10px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* ==========================================
-   PANEL HEADER
-========================================== */
-
-.calendar-task-panel-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
+.calendar-day.today .calendar-date {
+    color: var(--primary-light);
+    display: inline-flex;
     align-items: center;
-
-    margin-bottom: 20px;
-
-}
-
-
-.calendar-panel-label {
-
-    display: block;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    color: #64748b;
-
-    margin-bottom: 5px;
-
-}
-
-
-.calendar-task-panel-header h3 {
-
-    margin: 0;
-
-    font-size: 24px;
-
-    color: #0f172a;
-
-}
-
-
-.calendar-close-btn {
-
-    width: 42px;
-
-    height: 42px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: #fee2e2;
-
-    color: #dc2626;
-
-    font-size: 26px;
-
-    cursor: pointer;
-
-}
-
-
-.calendar-close-btn:hover {
-
-    background: #fecaca;
-
-}
-
-
-/* ==========================================
-   TASK CARD
-========================================== */
-
-.calendar-task-card {
-
-    padding: 18px;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 15px;
-
-    margin-bottom: 12px;
-
-    background: #f8fafc;
-
-}
-
-
-.calendar-task-card:last-child {
-
-    margin-bottom: 0;
-
-}
-
-
-.calendar-task-card.completed {
-
-    opacity: 0.7;
-
-}
-
-
-.calendar-task-card-title {
-
-    font-size: 17px;
-
-    font-weight: 600;
-
-    color: #0f172a;
-
-    margin-bottom: 10px;
-
-    word-break: break-word;
-
-}
-
-
-.calendar-task-card.completed
-.calendar-task-card-title {
-
-    text-decoration: line-through;
-
-    color: #94a3b8;
-
-}
-
-
-/* ==========================================
-   TASK DETAILS
-========================================== */
-
-.calendar-task-card-details {
-
-    display: flex;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
-
-    align-items: center;
-
-}
-
-
-.task-status {
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-}
-
-
-.completed-status {
-
-    color: #15803d;
-
-}
-
-
-.pending-status {
-
-    color: #d97706;
-
-}
-
-
-.task-priority {
-
-    font-size: 13px;
-
-    text-transform: capitalize;
-
-}
-
-
-/* ==========================================
-   EMPTY STATE
-========================================== */
-
-.calendar-no-tasks {
-
-    text-align: center;
-
-    padding: 30px;
-
-}
-
-
-.calendar-empty-icon {
-
-    font-size: 40px;
-
-    margin-bottom: 10px;
-
-}
-
-
-.calendar-no-tasks h3 {
-
-    margin: 0 0 8px;
-
-    font-size: 20px;
-
-}
-
-
-.calendar-no-tasks p {
-
-    margin: 0;
-
-    color: #64748b;
-
-}
-
-
-/* ==========================================
-   CALENDAR DAY IMPROVEMENTS
-========================================== */
-
-.calendar-day {
-
-    cursor: pointer;
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        border-color 0.15s ease;
-
-}
-
-
-.calendar-day:hover {
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 6px 18px
-        rgba(15, 23, 42, 0.08);
-
-}
-
-
-.calendar-day.selected {
-
-    border:
-        2px solid #0f172a;
-
-}
-
-
-.calendar-task-count {
-
-    margin-top: 8px;
-
-    margin-bottom: 5px;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    color: #64748b;
-
-}
-
-
-/* ==========================================
-   CALENDAR TASK PREVIEW
-========================================== */
-
-.calendar-task {
-
-    margin-top: 5px;
-
-    padding: 5px 7px;
-
-    border-radius: 7px;
-
-    background: #e2e8f0;
-
-    color: #334155;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-}
-
-
-/* PRIORITY */
-
-.calendar-task.high {
-
-    background: #fee2e2;
-
-    color: #dc2626;
-
-}
-
-
-.calendar-task.medium {
-
-    background: #fef3c7;
-
-    color: #92400e;
-
-}
-
-
-.calendar-task.low {
-
-    background: #dcfce7;
-
-    color: #166534;
-
-}
-
-
-/* COMPLETED */
-
-.calendar-task.completed {
-
-    text-decoration: line-through;
-
-    opacity: 0.6;
-
-}
-
-
-.calendar-more {
-
-    margin-top: 5px;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    color: #64748b;
-
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 700px) {
-
-    .calendar-task-panel {
-
-        padding: 18px;
-
-    }
-
-
-    .calendar-task-panel-header h3 {
-
-        font-size: 19px;
-
-    }
-
-
-    .calendar-task {
-
-        font-size: 10px;
-
-    }
-
-}
-/* ==========================================================
-   CALENDAR TASK INDICATORS
-========================================================== */
-
-.calendar-task-indicator {
-
-    margin-top: 6px;
-
-    margin-bottom: 5px;
-
-}
-
-
-.calendar-task-count {
-
-    display: inline-block;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    color: #475569;
-
-    background: #f1f5f9;
-
-    padding: 3px 7px;
-
-    border-radius: 8px;
-
-}
-
-
-/* ==========================================================
-   CALENDAR TASK
-========================================================== */
-
-.calendar-task {
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    padding: 4px 6px;
-
-    margin-top: 4px;
-
-    border-radius: 6px;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-}
-
-
-/* ==========================================================
-   PRIORITY COLORS
-========================================================== */
-
-.calendar-task.priority-high {
-
-    background: #fee2e2;
-
-    color: #b91c1c;
-
-}
-
-
-.calendar-task.priority-medium {
-
-    background: #fef3c7;
-
-    color: #92400e;
-
-}
-
-
-.calendar-task.priority-low {
-
-    background: #dcfce7;
-
-    color: #166534;
-
-}
-
-
-/* ==========================================================
-   COMPLETED TASK
-========================================================== */
-
-.calendar-task.completed {
-
-    text-decoration: line-through;
-
-    opacity: 0.55;
-
-}
-
-
-/* ==========================================================
-   MORE TASKS
-========================================================== */
-
-.calendar-more {
-
-    font-size: 11px;
-
-    color: #64748b;
-
-    font-weight: 600;
-
-    margin-top: 4px;
-
-}
-
-
-/* ==========================================================
-   SELECTED DAY
-========================================================== */
-
-.calendar-day.selected {
-
-    outline: 2px solid #0f172a;
-
-    outline-offset: -2px;
-
-}
-/* ==========================================================
-   CALENDAR TASK MODAL
-========================================================== */
-
-.calendar-task-modal {
-
-    position: fixed;
-
-    inset: 0;
-
-    background:
-        rgba(15, 23, 42, 0.55);
-
-    display: flex;
-
-    align-items: center;
-
     justify-content: center;
-
-    z-index: 9999;
-
-    padding: 20px;
-
-}
-
-
-.calendar-task-modal-content {
-
-    position: relative;
-
-    width: min(
-        500px,
-        100%
-    );
-
-    background: white;
-
-    border-radius: 22px;
-
-    padding: 30px;
-
-    box-shadow:
-        0 25px 70px
-        rgba(15, 23, 42, 0.25);
-
-}
-
-
-.calendar-task-modal-content h2 {
-
-    margin: 0 45px 25px 0;
-
-    font-size: 26px;
-
-    word-break: break-word;
-
-}
-
-
-.calendar-task-modal-close {
-
-    position: absolute;
-
-    top: 18px;
-
-    right: 18px;
-
-    width: 40px;
-
-    height: 40px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #fee2e2;
-
-    color: #dc2626;
-
-    font-size: 25px;
-
-    cursor: pointer;
-
-}
-
-
-.calendar-task-info {
-
-    background: #f8fafc;
-
-    border-radius: 14px;
-
-    padding: 18px;
-
-    margin-bottom: 22px;
-
-}
-
-
-.calendar-task-info p {
-
-    margin: 8px 0;
-
-    color: #475569;
-
-}
-
-
-.calendar-task-modal-actions {
-
-    display: flex;
-
-    gap: 12px;
-
-}
-
-
-.modal-complete-btn,
-.modal-delete-btn {
-
-    flex: 1;
-
-    border: none;
-
-    padding: 13px 18px;
-
-    border-radius: 12px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-}
-
-
-.modal-complete-btn {
-
-    background: #dcfce7;
-
-    color: #166534;
-
-}
-
-
-.modal-delete-btn {
-
-    background: #fee2e2;
-
-    color: #dc2626;
-
-}
-
-
-.modal-complete-btn:hover {
-
-    background: #bbf7d0;
-
-}
-
-
-.modal-delete-btn:hover {
-
-    background: #fecaca;
-
-}
-
-
-@media (max-width: 600px) {
-
-    .calendar-task-modal-actions {
-
-        flex-direction: column;
-
-    }
-
-}
-/* ============================================================
-   EDIT TASK MODAL
-   ============================================================ */
-
-.edit-task-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 18px;
-}
-
-.edit-task-field label {
-    font-weight: 600;
-    color: #172033;
-    font-size: 14px;
-}
-
-.edit-task-field input,
-.edit-task-field select {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 13px 14px;
-    border: 1px solid #d7deea;
-    border-radius: 10px;
-    background: #ffffff;
-    color: #172033;
-    font-size: 15px;
-    outline: none;
-}
-
-.edit-task-field input:focus,
-.edit-task-field select:focus {
-    border-color: #172033;
-    box-shadow: 0 0 0 3px rgba(23, 32, 51, 0.08);
-}
-
-
-/* ============================================================
-   EDIT BUTTON
-   ============================================================ */
-
-.modal-edit-btn {
-    border: none;
-    border-radius: 10px;
-    padding: 11px 16px;
-    background: #e8edff;
-    color: #172033;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.modal-edit-btn:hover {
-    transform: translateY(-1px);
-}
-
-
-/* ============================================================
-   SAVE BUTTON
-   ============================================================ */
-
-.modal-save-btn {
-    border: none;
-    border-radius: 10px;
-    padding: 12px 18px;
-    background: #172033;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.modal-save-btn:hover {
-    transform: translateY(-1px);
-}
-
-
-/* ============================================================
-   CANCEL BUTTON
-   ============================================================ */
-
-.modal-cancel-btn {
-    border: 1px solid #d7deea;
-    border-radius: 10px;
-    padding: 12px 18px;
-    background: white;
-    color: #172033;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.modal-cancel-btn:hover {
-    background: #f5f7fa;
-}
-
-
-/* ============================================================
-   MODAL ACTION LAYOUT
-   ============================================================ */
-
-.calendar-task-modal-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 24px;
-}
-/* ============================================================
-   DUE DATE STATUS COLORS
-   ============================================================ */
-
-.overdue {
-    color: #dc2626;
-    font-weight: 700;
-}
-
-.due-today {
-    color: #ea580c;
-    font-weight: 700;
-}
-
-.due-tomorrow {
-    color: #d97706;
-    font-weight: 700;
-}
-
-.due-upcoming {
-    color: #2563eb;
-    font-weight: 600;
-}
-
-.due-future {
-    color: #16a34a;
-    font-weight: 600;
-}
-
-.due-completed {
-    color: #64748b;
-    font-weight: 500;
-}
-
-.no-due-date {
-    color: #64748b;
-    font-weight: 500;
-}
-/* ============================================================
-   🚀 MY TASKS — PROFESSIONAL UI UPGRADE
-   STEP 1
-   ============================================================ */
-
-/* ============================================================
-   ROOT
-   ============================================================ */
-
-:root {
-    --primary: #4f46e5;
-    --primary-light: #eef2ff;
-    --primary-hover: #4338ca;
-
-    --dark: #0f172a;
-    --dark-soft: #1e293b;
-
-    --text: #0f172a;
-    --text-soft: #64748b;
-    --text-light: #94a3b8;
-
-    --border: #e2e8f0;
-    --border-dark: #cbd5e1;
-
-    --background: #f1f5f9;
-    --card: #ffffff;
-
-    --success: #16a34a;
-    --success-bg: #dcfce7;
-
-    --warning: #d97706;
-    --warning-bg: #fef3c7;
-
-    --danger: #dc2626;
-    --danger-bg: #fee2e2;
-
-    --radius-sm: 10px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-
-    --shadow-sm:
-        0 4px 15px rgba(15, 23, 42, 0.06);
-
-    --shadow-md:
-        0 12px 30px rgba(15, 23, 42, 0.08);
-
-    --shadow-lg:
-        0 25px 60px rgba(15, 23, 42, 0.12);
-}
-
-
-/* ============================================================
-   BODY
-   ============================================================ */
-
-body {
-    background:
-        radial-gradient(
-            circle at top left,
-            #e0e7ff 0%,
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at bottom right,
-            #dbeafe 0%,
-            transparent 35%
-        ),
-        #f8fafc;
-
-    color: var(--text);
-
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
-
-    -webkit-font-smoothing: antialiased;
-}
-
-
-/* ============================================================
-   MAIN CONTAINER
-   ============================================================ */
-
-.container {
-    width: min(1180px, 94%);
-
-    margin: 35px auto;
-
-    padding: 38px;
-
-    background: rgba(255, 255, 255, 0.96);
-
-    border:
-        1px solid rgba(255, 255, 255, 0.8);
-
-    border-radius: var(--radius-xl);
-
-    box-shadow: var(--shadow-lg);
-
-    -webkit-backdrop-filter: blur(6px);
-
-    backdrop-filter: blur(10px);
-}
-
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-
-.header {
-    margin-bottom: 35px;
-
-    padding-bottom: 25px;
-
-    border-bottom:
-        1px solid var(--border);
-}
-
-
-.header h1 {
-    font-size: 42px;
-
-    font-weight: 800;
-
-    letter-spacing: -1.5px;
-
-    color: var(--dark);
-}
-
-
-.user-email {
-    color: var(--text-soft);
-
-    font-size: 14px;
-
-    margin-top: 8px;
-}
-
-
-/* ============================================================
-   LOGOUT
-   ============================================================ */
-
-.logout-btn {
-    background: var(--danger);
-
-    border: none;
-
-    border-radius: 12px;
-
-    padding: 12px 20px;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    box-shadow:
-        0 8px 20px rgba(220, 38, 38, 0.15);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-
-.logout-btn:hover {
-    background: #b91c1c;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 12px 25px rgba(220, 38, 38, 0.22);
-}
-
-
-/* ============================================================
-   STATISTICS
-   ============================================================ */
-
-.stats {
-    gap: 20px;
-
-    margin-bottom: 30px;
-}
-
-
-.stat-card {
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f8fafc
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius: var(--radius-lg);
-
-    text-align: left;
-
-    box-shadow: var(--shadow-sm);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.stat-card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 90px;
-    height: 90px;
-
-    right: -30px;
-    top: -30px;
-
-    background:
-        rgba(79, 70, 229, 0.08);
-
     border-radius: 50%;
 }
 
-
-.stat-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow: var(--shadow-md);
-}
-
-
-.stat-number {
-    position: relative;
-
-    z-index: 2;
-
-    font-size: 38px;
-
-    font-weight: 800;
-
-    letter-spacing: -1px;
-
-    color: var(--dark);
-}
-
-
-.stat-label {
-    position: relative;
-
-    z-index: 2;
-
-    margin-top: 5px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    color: var(--text-soft);
-}
-
-
-/* ============================================================
-   PROGRESS
-   ============================================================ */
-
-.progress-section {
-    padding: 22px;
-
-    margin-bottom: 30px;
-
-    background: #f8fafc;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: var(--radius-lg);
-}
-
-
-.progress-header {
-    margin-bottom: 12px;
-
-    color: var(--dark);
-
-    font-size: 14px;
-}
-
-
-#progressPercent {
-    color: var(--primary);
-
-    font-weight: 800;
-}
-
-
-.progress-bar {
-    height: 12px;
-
-    background: #e2e8f0;
-
-    border-radius: 999px;
-
-    overflow: hidden;
-}
-
-
-.progress-fill {
-    background:
-        linear-gradient(
-            90deg,
-            #4f46e5,
-            #6366f1
-        );
-
-    border-radius: 999px;
-
-    box-shadow:
-        0 0 12px rgba(79, 70, 229, 0.3);
-
-    transition:
-        width 0.4s ease;
-}
-
-
-/* ============================================================
-   ADD TASK FORM
-   ============================================================ */
-
-.task-form {
-    gap: 12px;
-
-    margin-bottom: 25px;
-}
-
-
-.task-form input,
-.task-form select {
-    height: 58px;
-
-    background: #ffffff;
-
-    border:
-        1px solid var(--border-dark);
-
-    border-radius: var(--radius-md);
-
-    color: var(--text);
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.task-form input:hover,
-.task-form select:hover {
-    border-color: #94a3b8;
-}
-
-
-.task-form input:focus,
-.task-form select:focus {
-    border-color: var(--primary);
-
-    box-shadow:
-        0 0 0 4px
-        rgba(79, 70, 229, 0.10);
-
-    transform: translateY(-1px);
-}
-
-
-/* ============================================================
-   ADD BUTTON
-   ============================================================ */
-
-.add-btn {
-    background:
-        linear-gradient(
-            135deg,
-            #4f46e5,
-            #6366f1
-        );
-
-    border-radius: var(--radius-md);
-
-    box-shadow:
-        0 10px 22px
-        rgba(79, 70, 229, 0.22);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.add-btn:hover {
-    background:
-        linear-gradient(
-            135deg,
-            #4338ca,
-            #4f46e5
-        );
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 14px 28px
-        rgba(79, 70, 229, 0.30);
-}
-
-
-/* ============================================================
-   SEARCH
-   ============================================================ */
-
-.search-box {
-    flex: 1;
-
-    min-width: 220px;
-
-    margin-bottom: 0;
-}
-
-
-.search-box input {
-    height: 46px;
-
-    border:
-        1px solid var(--border-dark);
-
-    border-radius: 12px;
-
-    background: #ffffff;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.search-box input:focus {
-    border-color: var(--primary);
-
-    box-shadow:
-        0 0 0 4px
-        rgba(79, 70, 229, 0.10);
-}
-
-
-/* ============================================================
-   FILTER BUTTONS
-   ============================================================ */
-
-.filter-btn {
-    background: #ffffff;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 11px;
-
-    color: var(--text-soft);
-
-    transition:
-        all 0.2s ease;
-}
-
-
-.filter-btn:hover {
-    border-color: #c7d2fe;
-
-    background: var(--primary-light);
-
-    color: var(--primary);
-}
-
-
-.filter-btn.active {
-    background:
-        linear-gradient(
-            135deg,
-            #4f46e5,
-            #6366f1
-        );
-
-    border-color: transparent;
-
-    color: white;
-
-    box-shadow:
-        0 6px 15px
-        rgba(79, 70, 229, 0.20);
-}
-
-
-/* ============================================================
-   CALENDAR BUTTON
-   ============================================================ */
-
-.calendar-btn {
-    background:
-        linear-gradient(
-            135deg,
-            #0f172a,
-            #1e293b
-        );
-
-    border-radius: 11px;
-
-    box-shadow:
-        0 6px 15px
-        rgba(15, 23, 42, 0.15);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.calendar-btn:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 10px 20px
-        rgba(15, 23, 42, 0.20);
-}
-
-
-/* ============================================================
-   SORT
-   ============================================================ */
-
-.sort-select {
-    height: 44px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 11px;
-
-    background: white;
-
-    color: var(--text);
-
-    font-weight: 600;
-}
-
-
-/* ============================================================
-   TASK SECTION
-   ============================================================ */
-
-.tasks-section {
-    margin-top: 10px;
-}
-
-
-.tasks-section h2 {
-    font-size: 26px;
-
-    font-weight: 800;
-
-    letter-spacing: -0.5px;
-
-    margin-bottom: 20px;
-}
-
-
-/* ============================================================
-   TASK CARD
-   ============================================================ */
-
-.task-item {
-    position: relative;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 18px;
-
-    background: white;
-
-    padding: 21px;
-
-    margin-bottom: 13px;
-
-    box-shadow:
-        0 3px 12px
-        rgba(15, 23, 42, 0.035);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-}
-
-
-.task-item:hover {
-    transform: translateY(-3px);
-
-    border-color: #c7d2fe;
-
-    box-shadow:
-        0 12px 28px
-        rgba(15, 23, 42, 0.09);
-}
-
-
-/* ============================================================
-   TASK TITLE
-   ============================================================ */
-
-.task-title {
-    font-size: 17px;
-
+.calendar-task-count {
+    font-size: 0.65rem;
     font-weight: 700;
-
-    color: var(--dark);
-
-    margin-bottom: 9px;
+    color: var(--primary-light);
+    margin-bottom: 4px;
 }
-
-
-.task-details {
-    gap: 10px;
-
-    color: var(--text-soft);
-}
-
-
-/* ============================================================
-   PRIORITY BADGES
-   ============================================================ */
-
-.priority-high {
-    background: var(--danger-bg);
-
-    color: var(--danger);
-
-    padding: 4px 9px;
-
-    border-radius: 999px;
-
-    font-size: 12px;
-}
-
-
-.priority-medium {
-    background: var(--warning-bg);
-
-    color: var(--warning);
-
-    padding: 4px 9px;
-
-    border-radius: 999px;
-
-    font-size: 12px;
-}
-
-
-.priority-low {
-    background: var(--success-bg);
-
-    color: var(--success);
-
-    padding: 4px 9px;
-
-    border-radius: 999px;
-
-    font-size: 12px;
-}
-
-
-/* ============================================================
-   ACTION BUTTONS
-   ============================================================ */
-
-.task-actions button {
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.complete-btn:hover,
-.edit-btn:hover,
-.delete-btn:hover {
-    transform: translateY(-2px);
-}
-
-
-/* ============================================================
-   EMPTY STATE
-   ============================================================ */
-
-.empty-message {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f8fafc
-        );
-
-    border:
-        1px dashed #cbd5e1;
-
-    padding: 55px 30px;
-
-    font-size: 15px;
-}
-
-
-/* ============================================================
-   CALENDAR CONTAINER
-   ============================================================ */
-
-.calendar-section {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f8fafc
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius: var(--radius-lg);
-
-    box-shadow: var(--shadow-sm);
-}
-
-
-/* ============================================================
-   CALENDAR HEADER
-   ============================================================ */
-
-.calendar-header h2 {
-    font-size: 26px;
-
-    font-weight: 800;
-
-    letter-spacing: -0.5px;
-}
-
-
-.calendar-header button {
-    background:
-        linear-gradient(
-            135deg,
-            #0f172a,
-            #334155
-        );
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.calendar-header button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 18px
-        rgba(15, 23, 42, 0.18);
-}
-
-
-/* ============================================================
-   CALENDAR DAY
-   ============================================================ */
-
-.calendar-day {
-    background: white;
-
-    border:
-        1px solid var(--border);
-
-    box-shadow:
-        0 2px 8px
-        rgba(15, 23, 42, 0.025);
-}
-
-
-.calendar-day:hover {
-    border-color: #a5b4fc;
-
-    box-shadow:
-        0 8px 20px
-        rgba(79, 70, 229, 0.10);
-}
-
-
-.calendar-day.today {
-    border:
-        2px solid var(--primary);
-}
-
-
-.calendar-day.selected {
-    background: var(--primary-light);
-
-    border:
-        2px solid var(--primary);
-
-    box-shadow:
-        0 8px 20px
-        rgba(79, 70, 229, 0.12);
-}
-
-
-/* ============================================================
-   CALENDAR TASK PANEL
-   ============================================================ */
-
-.calendar-task-panel {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f8fafc
-        );
-
-    border:
-        1px solid var(--border);
-
-    box-shadow: var(--shadow-md);
-}
-
-
-.calendar-task-card {
-    background: white;
-
-    border:
-        1px solid var(--border);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-}
-
-
-.calendar-task-card:hover {
-    transform: translateY(-2px);
-
-    border-color: #c7d2fe;
-
-    box-shadow:
-        0 8px 20px
-        rgba(15, 23, 42, 0.08);
-}
-
-
-/* ============================================================
-   MODAL
-   ============================================================ */
-
-.calendar-task-modal {
-    background:
-        rgba(15, 23, 42, 0.65);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-}
-
-
-.calendar-task-modal-content {
-    border:
-        1px solid rgba(255, 255, 255, 0.7);
-
-    box-shadow:
-        0 30px 80px
-        rgba(15, 23, 42, 0.30);
-
-    animation:
-        modalIn 0.2s ease;
-}
-
-
-@keyframes modalIn {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(10px)
-            scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-}
-
-
-/* ============================================================
-   MODAL CLOSE
-   ============================================================ */
-
-.calendar-task-modal-close {
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-}
-
-
-.calendar-task-modal-close:hover {
-    transform: rotate(5deg) scale(1.05);
-
-    background: #fecaca;
-}
-
-
-/* ============================================================
-   MODAL ACTIONS
-   ============================================================ */
-
-.modal-edit-btn,
-.modal-complete-btn,
-.modal-delete-btn {
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.modal-edit-btn:hover,
-.modal-complete-btn:hover,
-.modal-delete-btn:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 6px 15px
-        rgba(15, 23, 42, 0.08);
-}
-
-
-/* ============================================================
-   MOBILE — PROFESSIONAL
-   ============================================================ */
-
-@media (max-width: 800px) {
-
-    .container {
-        width: 94%;
-
-        margin: 15px auto;
-
-        padding: 22px;
-
-        border-radius: 22px;
-    }
-
-
-    .header {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 15px;
-    }
-
-
-    .header h1 {
-        font-size: 32px;
-    }
-
-
-    .logout-btn {
-        width: 100%;
-    }
-
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-
-    .task-form {
-        grid-template-columns: 1fr;
-    }
-
-
-    .add-btn {
-        height: 58px;
-    }
-
-
-    .task-controls {
-        align-items: stretch;
-
-        flex-direction: column;
-    }
-
-
-    .search-box {
-        width: 100%;
-    }
-
-
-    .filter-btn,
-    .calendar-btn,
-    .sort-select {
-        width: 100%;
-    }
-
-
-    .sort-select {
-        margin-left: 0;
-    }
-
-
-    .task-item {
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-
-    .task-actions {
-        width: 100%;
-
-        justify-content: flex-end;
-    }
-
-}
-
-
-/* ============================================================
-   SMALL MOBILE
-   ============================================================ */
-
-@media (max-width: 500px) {
-
-    .container {
-        width: 96%;
-
-        padding: 16px;
-
-        border-radius: 18px;
-    }
-
-
-    .header h1 {
-        font-size: 28px;
-    }
-
-
-    .stat-card {
-        padding: 22px;
-    }
-
-
-    .stat-number {
-        font-size: 32px;
-    }
-
-
-    .tasks-section h2 {
-        font-size: 23px;
-    }
-
-
-    .calendar-section {
-        padding: 15px;
-    }
-
-}
-/* =========================================================
-   STEP 2 — ADVANCED CALENDAR
-   ========================================================= */
 
 .calendar-status-row {
     display: flex;
-    gap: 6px;
-    margin-top: 5px;
-    font-size: 11px;
-    font-weight: 700;
+    gap: 4px;
+    margin-bottom: 4px;
 }
 
 .calendar-completed-count {
-    color: #16a34a;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--success-light);
+    padding: 1px 6px;
+    background: rgba(16, 185, 129, 0.12);
+    border-radius: var(--radius-full);
 }
 
 .calendar-pending-count {
-    color: #64748b;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #fcd34d;
+    padding: 1px 6px;
+    background: rgba(245, 158, 11, 0.12);
+    border-radius: var(--radius-full);
 }
 
 .calendar-task {
-    transition:
-        transform 0.15s ease,
-        opacity 0.15s ease;
+    font-size: 0.65rem;
+    padding: 3px 6px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: all var(--transition-fast);
 }
 
 .calendar-task:hover {
-    transform: translateX(2px);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .calendar-task.completed {
-    opacity: 0.55;
+    opacity: 0.5;
     text-decoration: line-through;
 }
 
 .calendar-task.overdue {
-    border-left: 3px solid #ef4444;
+    color: #fca5a5;
 }
 
-.calendar-day.today {
-    position: relative;
+.calendar-task.priority-high {
+    border-left: 2px solid var(--danger);
 }
 
-.calendar-day.today::after {
-    content: "TODAY";
-
-    position: absolute;
-
-    top: 8px;
-    right: 8px;
-
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing: 0.5px;
-
-    padding: 3px 6px;
-
-    border-radius: 6px;
-
-    background: #4f46e5;
-    color: white;
+.calendar-task.priority-medium {
+    border-left: 2px solid var(--warning);
 }
 
-.calendar-day.selected {
-    box-shadow:
-        0 0 0 2px #4f46e5 inset;
-}
-
-.calendar-task-count {
-    font-size: 11px;
-    font-weight: 700;
+.calendar-task.priority-low {
+    border-left: 2px solid var(--success);
 }
 
 .calendar-more {
-    margin-top: 4px;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 2px;
+}
 
-    font-size: 11px;
+/* ==========================================================
+   CALENDAR TASK PANEL
+   ========================================================== */
+.calendar-task-panel {
+    display: none;
+    margin-top: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    animation: slideDown 0.3s ease;
+}
+
+.calendar-task-panel.visible {
+    display: block;
+}
+
+.calendar-task-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.calendar-panel-label {
+    font-size: 0.65rem;
     font-weight: 700;
-
-    color: #6366f1;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.calendar-day {
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
+.calendar-task-panel-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
-.calendar-day:not(.empty):hover {
-    transform: translateY(-2px);
+.calendar-close-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition);
 }
-/* ============================================================
-   PROFESSIONAL EDIT TASK MODAL
-   ============================================================ */
 
+.calendar-close-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger-light);
+}
+
+.calendar-task-panel-content {
+    padding: 16px 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.calendar-no-tasks {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-muted);
+}
+
+.calendar-empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+.calendar-no-tasks h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+}
+
+.calendar-no-tasks p {
+    font-size: 0.85rem;
+}
+
+.calendar-task-card {
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.calendar-task-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateX(4px);
+}
+
+.calendar-task-card.completed {
+    opacity: 0.6;
+}
+
+.calendar-task-card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.calendar-task-card.completed .calendar-task-card-title {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.calendar-task-card-details {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.task-status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+}
+
+.completed-status {
+    color: var(--success-light);
+    background: rgba(16, 185, 129, 0.12);
+}
+
+.pending-status {
+    color: #fcd34d;
+    background: rgba(245, 158, 11, 0.12);
+}
+
+.task-priority {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.task-calendar-date {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================
+   CALENDAR TASK MODAL
+   ========================================================== */
 .calendar-task-modal {
     position: fixed;
     inset: 0;
-
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding: 24px;
-
-    background: rgba(15, 23, 42, 0.58);
-
-    -webkit-backdrop-filter: blur(8px);
-
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(8px);
-
-
-    z-index: 9999;
-
-    animation: editModalFadeIn 0.2s ease;
+    animation: fadeIn 0.2s ease;
+    padding: 20px;
 }
-
-
-/* ============================================================
-   MODAL BOX
-   ============================================================ */
 
 .calendar-task-modal-content {
-    position: relative;
-
-    width: min(560px, 100%);
-
+    width: 100%;
+    max-width: 460px;
+    background: linear-gradient(145deg, #1e1b4b, #0f172a);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
     padding: 32px;
-
-    background: #ffffff;
-
-    border: 1px solid rgba(226, 232, 240, 0.9);
-
-    border-radius: 22px;
-
-    box-shadow:
-        0 25px 70px rgba(15, 23, 42, 0.22),
-        0 8px 25px rgba(15, 23, 42, 0.08);
-
-    animation: editModalSlideUp 0.25s ease;
-
-    box-sizing: border-box;
+    position: relative;
+    animation: slideDown 0.3s ease;
+    box-shadow: var(--shadow-lg);
 }
-
-
-/* ============================================================
-   TITLE
-   ============================================================ */
-
-.calendar-task-modal-content h2 {
-    margin: 0 0 28px 0;
-
-    font-size: 26px;
-    line-height: 1.2;
-
-    font-weight: 750;
-
-    color: #0f172a;
-
-    letter-spacing: -0.5px;
-}
-
-
-/* ============================================================
-   CLOSE BUTTON
-   ============================================================ */
 
 .calendar-task-modal-close {
     position: absolute;
-
-    top: 20px;
-    right: 20px;
-
-    width: 40px;
-    height: 40px;
-
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: #fef2f2;
-
-    color: #ef4444;
-
-    font-size: 24px;
-    font-weight: 600;
-
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 1.3rem;
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+    transition: all var(--transition);
 }
 
 .calendar-task-modal-close:hover {
-    background: #fee2e2;
-
-    transform: scale(1.05);
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger-light);
 }
 
-.calendar-task-modal-close:active {
-    transform: scale(0.96);
-}
-
-
-/* ============================================================
-   FORM FIELDS
-   ============================================================ */
-
-.edit-task-field {
+.calendar-task-modal-content h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-primary);
     margin-bottom: 20px;
+    padding-right: 40px;
 }
 
-.edit-task-field label {
-    display: block;
-
-    margin-bottom: 8px;
-
-    font-size: 14px;
-
-    font-weight: 650;
-
-    color: #334155;
+.calendar-task-info {
+    margin-bottom: 24px;
 }
 
-
-/* ============================================================
-   INPUTS + SELECT
-   ============================================================ */
-
-.edit-task-field input,
-.edit-task-field select {
-    width: 100%;
-
-    height: 48px;
-
-    padding: 0 14px;
-
-    box-sizing: border-box;
-
-    border: 1px solid #dbe2ea;
-
-    border-radius: 12px;
-
-    background: #f8fafc;
-
-    color: #0f172a;
-
-    font-size: 15px;
-
-    font-family: inherit;
-
-    outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+.calendar-task-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
 }
 
-
-/* Hover */
-
-.edit-task-field input:hover,
-.edit-task-field select:hover {
-    border-color: #cbd5e1;
-
-    background: #ffffff;
+.calendar-task-info p strong {
+    color: var(--text-primary);
 }
-
-
-/* Focus */
-
-.edit-task-field input:focus,
-.edit-task-field select:focus {
-    border-color: #6366f1;
-
-    background: #ffffff;
-
-    box-shadow:
-        0 0 0 4px rgba(99, 102, 241, 0.12);
-}
-
-
-/* ============================================================
-   ACTION BUTTONS
-   ============================================================ */
 
 .calendar-task-modal-actions {
     display: flex;
-
-    gap: 12px;
-
-    margin-top: 28px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
+.modal-edit-btn,
+.modal-complete-btn,
+.modal-delete-btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    border: 1px solid transparent;
+}
 
-/* SAVE */
+.modal-edit-btn {
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--primary-light);
+    border-color: rgba(99, 102, 241, 0.25);
+}
+
+.modal-edit-btn:hover {
+    background: rgba(99, 102, 241, 0.2);
+    transform: translateY(-1px);
+}
 
 .modal-complete-btn {
-    flex: 1;
-
-    height: 48px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: linear-gradient(
-        135deg,
-        #4f46e5,
-        #6366f1
-    );
-
-    color: #ffffff;
-
-    font-size: 15px;
-
-    font-weight: 650;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 20px rgba(79, 70, 229, 0.22);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        opacity 0.2s ease;
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--success-light);
+    border-color: rgba(16, 185, 129, 0.25);
 }
 
 .modal-complete-btn:hover {
+    background: rgba(16, 185, 129, 0.2);
     transform: translateY(-1px);
-
-    box-shadow:
-        0 12px 25px rgba(79, 70, 229, 0.28);
 }
-
-.modal-complete-btn:active {
-    transform: translateY(0);
-}
-
-.modal-complete-btn:disabled {
-    opacity: 0.6;
-
-    cursor: not-allowed;
-
-    transform: none;
-}
-
-
-/* CANCEL */
 
 .modal-delete-btn {
-    height: 48px;
-
-    padding: 0 22px;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 12px;
-
-    background: #ffffff;
-
-    color: #475569;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--danger-light);
+    border-color: rgba(239, 68, 68, 0.25);
 }
 
 .modal-delete-btn:hover {
-    background: #f8fafc;
-
-    border-color: #cbd5e1;
-
-    color: #1e293b;
-}
-
-
-/* ============================================================
-   ANIMATIONS
-   ============================================================ */
-
-@keyframes editModalFadeIn {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-
-@keyframes editModalSlideUp {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(12px)
-            scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-    .calendar-task-modal {
-        padding: 16px;
-    }
-
-    .calendar-task-modal-content {
-        padding: 24px 20px;
-
-        border-radius: 18px;
-    }
-
-    .calendar-task-modal-content h2 {
-        font-size: 23px;
-
-        margin-bottom: 24px;
-    }
-
-    .calendar-task-modal-actions {
-        flex-direction: column;
-    }
-
-    .modal-complete-btn,
-    .modal-delete-btn {
-        width: 100%;
-    }
-}
-/* ============================================================
-   EDIT TASK MODAL — FINAL LAYOUT FIX
-   ============================================================ */
-
-.calendar-task-modal-content {
-    width: min(620px, 100%);
-    padding: 34px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0 16px;
-    box-sizing: border-box;
-}
-
-/* Title */
-.calendar-task-modal-content h2 {
-    width: 100%;
-    margin: 0 0 30px 0;
-}
-
-/* Every field */
-.calendar-task-modal-content .edit-task-field {
-    display: block !important;
-    margin: 0 0 20px 0;
-    box-sizing: border-box;
-}
-
-/* Task title — full width */
-.calendar-task-modal-content .edit-task-field:nth-of-type(1) {
-    width: 100%;
-}
-
-/* Priority — half width */
-.calendar-task-modal-content .edit-task-field:nth-of-type(2) {
-    width: calc(50% - 8px);
-}
-
-/* Due date — half width */
-.calendar-task-modal-content .edit-task-field:nth-of-type(3) {
-    width: calc(50% - 8px);
-}
-
-/* Make all controls properly sized */
-.calendar-task-modal-content .edit-task-field input,
-.calendar-task-modal-content .edit-task-field select {
-    display: block;
-    width: 100%;
-    height: 50px;
-    box-sizing: border-box;
-}
-
-/* Buttons */
-.calendar-task-modal-content .calendar-task-modal-actions {
-    width: 100%;
-    display: flex;
-    gap: 12px;
-    margin-top: 4px;
-}
-
-/* Save button */
-.calendar-task-modal-content .modal-complete-btn {
-    flex: 1;
-    height: 50px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
-    color: white;
-    font-size: 15px;
-    font-weight: 650;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-/* Save hover */
-.calendar-task-modal-content .modal-complete-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
 }
 
-/* Cancel */
-.calendar-task-modal-content .modal-delete-btn {
-    height: 50px;
-    padding: 0 24px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    background: #f8fafc;
-    color: #475569;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-/* Cancel hover */
-.calendar-task-modal-content .modal-delete-btn:hover {
-    background: #f1f5f9;
-    border-color: #cbd5e1;
-}
-
-/* Close button */
-.calendar-task-modal-content .calendar-task-modal-close {
-    z-index: 5;
-}
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-    .calendar-task-modal-content {
-        width: 100%;
-        padding: 26px 22px;
-    }
-
-    .calendar-task-modal-content .edit-task-field:nth-of-type(1),
-    .calendar-task-modal-content .edit-task-field:nth-of-type(2),
-    .calendar-task-modal-content .edit-task-field:nth-of-type(3) {
-        width: 100%;
-    }
-
-    .calendar-task-modal-content .calendar-task-modal-actions {
-        flex-direction: column;
-    }
-
-    .calendar-task-modal-content .modal-complete-btn,
-    .calendar-task-modal-content .modal-delete-btn {
-        width: 100%;
-    }
-}
-/* =========================================================
-   PROFESSIONAL EDIT TASK MODAL
-  /* ============================================================
-   EDIT TASK MODAL — FINAL VERSION
-   ============================================================ */
-
-.calendar-task-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 24px;
-
-    background: rgba(15, 23, 42, 0.58);
-
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-
-    animation: editModalFadeIn 0.2s ease;
-}
-
-
-/* ============================================================
-   MODAL BOX
-   ============================================================ */
-
-.calendar-task-modal-content {
-    position: relative;
-
-    width: min(620px, 94vw);
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    padding: 32px;
-
-    background: #ffffff;
-
-    border: 1px solid #e2e8f0;
-    border-radius: 22px;
-
-    box-shadow:
-        0 25px 70px rgba(15, 23, 42, 0.22),
-        0 8px 25px rgba(15, 23, 42, 0.08);
-
-    box-sizing: border-box;
-
-    animation: editModalSlideUp 0.25s ease;
-}
-
-
-/* ============================================================
-   MODAL TITLE
-   ============================================================ */
-
-.calendar-task-modal-content h2 {
-    margin: 0 55px 28px 0;
-
-    font-size: 27px;
-    line-height: 1.2;
-
-    font-weight: 750;
-
-    color: #0f172a;
-
-    letter-spacing: -0.5px;
-}
-
-
-/* ============================================================
-   CLOSE BUTTON
-   ============================================================ */
-
-.calendar-task-modal-close {
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
-
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: none;
-    border-radius: 12px;
-
-    background: #fef2f2;
-    color: #ef4444;
-
-    font-size: 25px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.calendar-task-modal-close:hover {
-    background: #fee2e2;
-    transform: scale(1.05);
-}
-
-.calendar-task-modal-close:active {
-    transform: scale(0.96);
-}
-
-
-/* ============================================================
-   EDIT FORM
-   ============================================================ */
-
+/* ==========================================================
+   EDIT TASK FORM (inside modal)
+   ========================================================== */
 .calendar-edit-form {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    column-gap: 16px;
-    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
-
-
-/* ============================================================
-   LABELS
-   ============================================================ */
 
 .calendar-edit-form label {
-    display: block;
-
-    margin-top: 4px;
-
-    font-size: 14px;
-    font-weight: 650;
-
-    color: #475569;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
-
-
-/* ============================================================
-   INPUTS
-   ============================================================ */
 
 .calendar-edit-form input,
 .calendar-edit-form select {
-    width: 100%;
-    height: 52px;
-
-    padding: 0 15px;
-
-    border: 1px solid #cbd5e1;
-    border-radius: 12px;
-
-    background: #ffffff;
-    color: #0f172a;
-
+    padding: 12px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
     font-family: inherit;
-    font-size: 16px;
-
+    font-size: 0.95rem;
+    transition: all var(--transition);
     outline: none;
-
-    box-sizing: border-box;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
 .calendar-edit-form input:focus,
 .calendar-edit-form select:focus {
-    border-color: #6366f1;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(99, 102, 241, 0.12);
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-
-/* ============================================================
-   TITLE FIELD — FULL WIDTH
-   ============================================================ */
-
-.calendar-edit-form label[for="editTaskTitle"] {
-    grid-column: 1 / -1;
+.calendar-edit-form select option {
+    background: #1e1b4b;
+    color: white;
 }
 
-.calendar-edit-form input#editTaskTitle {
-    grid-column: 1 / -1;
+.calendar-edit-form input[type="date"] {
+    color-scheme: dark;
 }
-
-
-/* ============================================================
-   PRIORITY
-   ============================================================ */
-
-.calendar-edit-form label[for="editTaskPriority"] {
-    grid-column: 1;
-}
-
-.calendar-edit-form select#editTaskPriority {
-    grid-column: 1;
-}
-
-
-/* ============================================================
-   DUE DATE
-   ============================================================ */
-
-.calendar-edit-form label[for="editTaskDueDate"] {
-    grid-column: 2;
-}
-
-.calendar-edit-form input#editTaskDueDate {
-    grid-column: 2;
-}
-
-
-/* ============================================================
-   EDIT FORM BUTTONS
-   ============================================================ */
 
 .edit-form-actions {
-    grid-column: 1 / -1;
-
     display: flex;
-
-    gap: 12px;
-
-    margin-top: 18px;
+    gap: 10px;
+    margin-top: 8px;
 }
-
-
-/* ============================================================
-   CANCEL BUTTON
-   ============================================================ */
 
 .edit-cancel-btn {
     flex: 1;
-
-    height: 50px;
-
-    border: 1px solid #cbd5e1;
-    border-radius: 12px;
-
-    background: #f8fafc;
-    color: #475569;
-
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
     font-family: inherit;
-    font-size: 15px;
+    font-size: 0.9rem;
     font-weight: 600;
-
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+    transition: all var(--transition);
 }
 
 .edit-cancel-btn:hover {
-    background: #f1f5f9;
-    border-color: #94a3b8;
+    background: rgba(255, 255, 255, 0.1);
 }
-
-.edit-cancel-btn:active {
-    transform: scale(0.98);
-}
-
-
-/* ============================================================
-   SAVE BUTTON
-   ============================================================ */
 
 .edit-save-btn {
     flex: 1;
-
-    height: 50px;
-
+    padding: 12px 16px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
     border: none;
-    border-radius: 12px;
-
-    background: linear-gradient(
-        135deg,
-        #4f46e5,
-        #6366f1
-    );
-
-    color: #ffffff;
-
+    border-radius: var(--radius-md);
     font-family: inherit;
-    font-size: 15px;
-    font-weight: 650;
-
+    font-size: 0.9rem;
+    font-weight: 600;
     cursor: pointer;
-
-    box-shadow:
-        0 6px 18px
-        rgba(79, 70, 229, 0.20);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        opacity 0.2s ease;
+    transition: all var(--transition);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 .edit-save-btn:hover {
     transform: translateY(-1px);
-
-    box-shadow:
-        0 9px 24px
-        rgba(79, 70, 229, 0.28);
-}
-
-.edit-save-btn:active {
-    transform: translateY(0);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.45);
 }
 
 .edit-save-btn:disabled {
@@ -3889,573 +1390,383 @@ body {
     transform: none;
 }
 
-
-/* ============================================================
-   TASK DETAILS MODAL
-   ============================================================ */
-
-.calendar-task-info {
+/* ==========================================================
+   DELETE CONFIRMATION MODAL
+   ========================================================== */
+.delete-confirm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
     display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-
-    margin-bottom: 24px;
-
-    padding: 18px;
-
-    background: #f8fafc;
-
-    border: 1px solid #e2e8f0;
-    border-radius: 14px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.2s ease;
+    padding: 20px;
 }
 
-.calendar-task-info p {
-    margin: 0;
-
-    font-size: 15px;
-
-    color: #475569;
+.delete-confirm-content {
+    width: 100%;
+    max-width: 420px;
+    background: linear-gradient(145deg, #1e1b4b, #0f172a);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 36px 32px;
+    text-align: center;
+    animation: slideDown 0.3s ease;
+    box-shadow: var(--shadow-lg);
 }
 
-.calendar-task-info strong {
-    color: #0f172a;
+.delete-confirm-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    animation: pulse 1s ease infinite;
 }
 
+.delete-confirm-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
 
-/* ============================================================
-   TASK MODAL ACTIONS
-   ============================================================ */
+.delete-confirm-message {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
 
-.calendar-task-modal-actions {
+.delete-confirm-message strong {
+    color: var(--text-primary);
+}
+
+.delete-confirm-actions {
     display: flex;
-
     gap: 12px;
-
-    margin-top: 20px;
 }
 
-.calendar-task-modal-actions button {
-    min-height: 48px;
-
-    border: none;
-    border-radius: 12px;
-
-    padding: 0 18px;
-
+.delete-cancel-btn {
+    flex: 1;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
     font-family: inherit;
-
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 600;
-
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+    transition: all var(--transition);
 }
 
+.delete-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
 
-/* EDIT */
-
-.modal-edit-btn {
+.delete-confirm-btn {
     flex: 1;
-
-    background: #dbeafe;
-    color: #1d4ed8;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--danger), #dc2626);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
 }
 
-.modal-edit-btn:hover {
-    background: #bfdbfe;
-
+.delete-confirm-btn:hover {
     transform: translateY(-1px);
+    box-shadow: 0 6px 25px rgba(239, 68, 68, 0.45);
 }
 
-
-/* COMPLETE */
-
-.modal-complete-btn {
-    flex: 1;
-
-    background: #dcfce7;
-    color: #166534;
+.delete-confirm-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
 
-.modal-complete-btn:hover {
-    background: #bbf7d0;
-
-    transform: translateY(-1px);
+/* ==========================================================
+   SCROLLBAR STYLING
+   ========================================================== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }
 
-
-/* DELETE */
-
-.modal-delete-btn {
-    flex: 1;
-
-    background: #fee2e2;
-    color: #dc2626;
+::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-.modal-delete-btn:hover {
-    background: #fecaca;
-
-    transform: translateY(-1px);
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
 }
 
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
 
-/* ============================================================
-   ANIMATIONS
-   ============================================================ */
-
-@keyframes editModalFadeIn {
-
-    from {
-        opacity: 0;
+/* ==========================================================
+   RESPONSIVE DESIGN
+   ========================================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px 12px 40px;
     }
 
-    to {
-        opacity: 1;
+    .main-header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+        padding: 24px 20px;
     }
 
-}
-
-
-@keyframes editModalSlideUp {
-
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.98);
+    .header-content h1 {
+        font-size: 1.5rem;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+    .stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
     }
 
-}
+    .stat-card {
+        padding: 16px 10px;
+    }
 
+    .stat-number {
+        font-size: 1.6rem;
+    }
 
-/* ============================================================
-   MOBILE
-   ============================================================ */
+    .stat-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.5px;
+    }
 
-@media (max-width: 600px) {
+    .task-form {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 18px;
+    }
 
-    .calendar-task-modal {
+    .task-form .form-group:first-child {
+        grid-column: auto;
+    }
+
+    .add-btn {
+        width: 100%;
+        height: 44px;
+    }
+
+    .task-controls {
+        flex-direction: column;
         padding: 14px;
     }
 
-    .calendar-task-modal-content {
+    .search-box {
         width: 100%;
-
-        padding: 24px 20px;
-
-        border-radius: 18px;
     }
 
-    .calendar-task-modal-content h2 {
-        font-size: 23px;
-
-        margin-right: 45px;
+    .filter-group {
+        width: 100%;
+        justify-content: center;
     }
 
-    .calendar-edit-form {
-        grid-template-columns: 1fr;
+    .sort-group {
+        width: 100%;
+        margin-left: 0;
     }
 
-    .calendar-edit-form label[for="editTaskTitle"],
-    .calendar-edit-form input#editTaskTitle,
-    .calendar-edit-form label[for="editTaskPriority"],
-    .calendar-edit-form select#editTaskPriority,
-    .calendar-edit-form label[for="editTaskDueDate"],
-    .calendar-edit-form input#editTaskDueDate,
-    .edit-form-actions {
-        grid-column: 1;
+    .sort-select {
+        width: 100%;
     }
 
-    .edit-form-actions {
+    .task-item {
         flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
     }
 
+    .task-actions {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .task-actions .complete-btn,
+    .task-actions .delete-btn {
+        flex: 1;
+    }
+
+    .calendar-day {
+        min-height: 65px;
+        padding: 4px;
+    }
+
+    .calendar-task {
+        display: none;
+    }
+
+    .calendar-date {
+        font-size: 0.75rem;
+    }
+
+    .calendar-task-panel-content {
+        max-height: 250px;
+    }
+
+    .delete-confirm-content,
+    .calendar-task-modal-content {
+        padding: 28px 24px;
+    }
+
+    .delete-confirm-content h2,
+    .calendar-task-modal-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .delete-confirm-actions,
     .calendar-task-modal-actions {
         flex-direction: column;
     }
+}
 
-    .calendar-task-modal-actions button {
-        width: 100%;
+@media (max-width: 480px) {
+    .stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
     }
 
-}
-/* ============================================================
-   EDIT TASK — ALIGN PRIORITY & DUE DATE
-   ============================================================ */
+    .stat-number {
+        font-size: 1.3rem;
+    }
 
-.calendar-edit-form {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 20px;
-    row-gap: 10px;
-}
+    .filter-btn,
+    .calendar-btn {
+        font-size: 0.72rem;
+        padding: 6px 12px;
+    }
 
-/* Priority label + field */
-.calendar-edit-form label[for="editTaskPriority"] {
-    grid-column: 1;
-    grid-row: 3;
-    margin-top: 0;
-}
+    .calendar-grid {
+        gap: 2px;
+    }
 
-.calendar-edit-form #editTaskPriority {
-    grid-column: 1;
-    grid-row: 4;
-}
+    .calendar-day {
+        min-height: 50px;
+        padding: 3px;
+    }
 
-/* Due date label + field */
-.calendar-edit-form label[for="editTaskDueDate"] {
-    grid-column: 2;
-    grid-row: 3;
-    margin-top: 0;
-}
+    .calendar-day.today .calendar-date {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+    }
 
-.calendar-edit-form #editTaskDueDate {
-    grid-column: 2;
-    grid-row: 4;
+    .calendar-task-count,
+    .calendar-status-row,
+    .calendar-more {
+        display: none;
+    }
 }
 
-/* Keep buttons below both columns */
-.calendar-edit-form .edit-form-actions {
-    grid-column: 1 / -1;
-    grid-row: 5;
-
-    margin-top: 18px;
-}
-/* ============================================================
-   PROFESSIONAL DELETE CONFIRMATION MODAL
-   ============================================================ */
-
-.delete-confirm-modal {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 99999;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        rgba(15, 23, 42, 0.58);
-
-    -webkit-backdrop-filter:
-        blur(8px);
-
-    backdrop-filter:
-        blur(8px);
-
-}
-
-
-/* ============================================================
-   MODAL CONTENT
-   ============================================================ */
-
-.delete-confirm-content {
-
-    width: min(
-        460px,
-        92vw
-    );
-
-    padding: 34px;
-
-    background: #ffffff;
-
-    border-radius: 22px;
-
+/* ==========================================================
+   LANDING PAGE (index.html) - overrides
+   ========================================================== */
+header {
     text-align: center;
-
-    box-shadow:
-        0 30px 80px
-        rgba(15, 23, 42, 0.30);
-
-    animation:
-        deleteModalIn
-        0.22s
-        ease-out;
-
+    padding: 40px 0;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    margin: -24px -20px 40px;
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
 }
 
-
-/* ============================================================
-   ICON
-   ============================================================ */
-
-.delete-confirm-icon {
-
-    width: 64px;
-
-    height: 64px;
-
-    margin:
-        0 auto 20px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 18px;
-
-    background:
-        #fff1f2;
-
-    font-size: 28px;
-
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-
-/* ============================================================
-   TITLE
-   ============================================================ */
-
-.delete-confirm-content h2 {
-
-    margin: 0 0 12px;
-
-    color:
-        #0f172a;
-
-    font-size: 25px;
-
-    font-weight: 750;
-
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
 }
 
-
-/* ============================================================
-   MESSAGE
-   ============================================================ */
-
-.delete-confirm-message {
-
-    margin: 0;
-
-    color:
-        #64748b;
-
-    font-size: 15px;
-
-    line-height: 1.7;
-
+.main {
+    min-height: 80vh;
 }
 
-
-.delete-confirm-message strong {
-
-    color:
-        #0f172a;
-
-    font-weight: 700;
-
-    overflow-wrap:
-        anywhere;
-
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
 }
 
-
-/* ============================================================
-   BUTTON CONTAINER
-   ============================================================ */
-
-.delete-confirm-actions {
-
-    display: flex;
-
-    gap: 12px;
-
-    margin-top: 28px;
-
+.card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+    transition: transform var(--transition), box-shadow var(--transition);
+    border-top: 4px solid var(--primary);
+    backdrop-filter: blur(20px);
+    animation: fadeInUp 0.5s ease forwards;
 }
 
-
-/* ============================================================
-   CANCEL
-   ============================================================ */
-
-.delete-cancel-btn {
-
-    flex: 1;
-
-    height: 50px;
-
-    border:
-        1px solid #e2e8f0;
-
-    border-radius: 12px;
-
-    background:
-        #f8fafc;
-
-    color:
-        #475569;
-
-    font-size: 15px;
-
-    font-weight: 650;
-
-    cursor: pointer;
-
-    transition:
-        all 0.2s ease;
-
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
-
-.delete-cancel-btn:hover {
-
-    background:
-        #f1f5f9;
-
-    border-color:
-        #cbd5e1;
-
-    transform:
-        translateY(-1px);
-
+.auth-card {
+    border-top-color: var(--success);
 }
 
+.dashboard-card {
+    border-top-color: var(--primary);
+}
 
-/* ============================================================
-   DELETE BUTTON
-   ============================================================ */
+.card h3 {
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
 
-.delete-confirm-btn {
-
-    flex: 1;
-
-    height: 50px;
-
+.card button {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
     border: none;
-
-    border-radius: 12px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #dc2626,
-            #ef4444
-        );
-
-    color:
-        #ffffff;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
-
-    transition:
-        all 0.2s ease;
-
+    transition: all var(--transition);
 }
 
-
-.delete-confirm-btn:hover {
-
-    transform:
-        translateY(-1px);
-
-    box-shadow:
-        0 10px 25px
-        rgba(220, 38, 38, 0.25);
-
+.card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
 }
 
-
-.delete-confirm-btn:disabled {
-
-    opacity: 0.65;
-
-    cursor:
-        not-allowed;
-
-    transform:
-        none;
-
-    box-shadow:
-        none;
-
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 40px;
 }
 
-
-/* ============================================================
-   ANIMATION
-   ============================================================ */
-
-@keyframes deleteModalIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(0.94)
-            translateY(8px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            translateY(0);
-
-    }
-
-}
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-    .delete-confirm-content {
-
-        width: 100%;
-
-        padding: 28px 22px;
-
-        border-radius: 18px;
-
-    }
-
-
-    .delete-confirm-actions {
-
-        flex-direction:
-            column-reverse;
-
-    }
-
-
-    .delete-cancel-btn,
-    .delete-confirm-btn {
-
-        width: 100%;
-
-    }
-
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }

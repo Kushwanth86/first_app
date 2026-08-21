@@ -114,7 +114,6 @@ async function checkUser() {
 
         emailElement.textContent =
             currentUser.email;
-
     }
 
 
@@ -193,7 +192,6 @@ async function loadTasks() {
     ) {
 
         renderCalendar();
-
     }
 }
 
@@ -202,7 +200,11 @@ async function loadTasks() {
 // ADD TASK
 // ============================================================
 
-async function addTask() {
+async function addTask(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
 
     if (!currentUser) {
 
@@ -312,7 +314,6 @@ async function addTask() {
 
         priorityInput.value =
             "medium";
-
     }
 
 
@@ -320,7 +321,6 @@ async function addTask() {
 
         dueDateInput.value =
             "";
-
     }
 
 
@@ -355,7 +355,6 @@ function setFilter(
             btn.classList.remove(
                 "active"
             );
-
         }
     );
 
@@ -365,7 +364,6 @@ function setFilter(
         button.classList.add(
             "active"
         );
-
     }
 
 
@@ -478,9 +476,7 @@ function setupEnterKey() {
                 event.preventDefault();
 
                 addTask();
-
             }
-
         }
     );
 }
@@ -513,7 +509,6 @@ function getFilteredTasks() {
 
                 }
             );
-
     }
 
 
@@ -530,7 +525,6 @@ function getFilteredTasks() {
 
                 }
             );
-
     }
 
 
@@ -550,7 +544,6 @@ function getFilteredTasks() {
 
                 }
             );
-
     }
 
 
@@ -576,7 +569,6 @@ function getFilteredTasks() {
 
                 }
             );
-
     }
 
 
@@ -603,7 +595,6 @@ function getFilteredTasks() {
 
             }
         );
-
     }
 
 
@@ -622,16 +613,13 @@ function getFilteredTasks() {
                     return 0;
                 }
 
-
                 if (!a.due_date) {
                     return 1;
                 }
 
-
                 if (!b.due_date) {
                     return -1;
                 }
-
 
                 return (
                     new Date(
@@ -646,7 +634,6 @@ function getFilteredTasks() {
 
             }
         );
-
     }
 
 
@@ -674,7 +661,6 @@ function getFilteredTasks() {
                         a.priority
                     ] || 2;
 
-
                 const bPriority =
                     priorityOrder[
                         b.priority
@@ -688,7 +674,6 @@ function getFilteredTasks() {
 
             }
         );
-
     }
 
 
@@ -740,14 +725,12 @@ function displayTasks() {
 
             empty.textContent =
                 "No matching tasks found.";
-
         }
 
         else {
 
             empty.textContent =
                 "No tasks found. Add a new task! 🚀";
-
         }
 
 
@@ -778,7 +761,6 @@ function displayTasks() {
                 taskItem.classList.add(
                     "completed"
                 );
-
             }
 
 
@@ -852,7 +834,6 @@ function displayTasks() {
 
                 priority.className =
                     "priority-high";
-
             }
 
 
@@ -866,7 +847,6 @@ function displayTasks() {
 
                 priority.className =
                     "priority-low";
-
             }
 
 
@@ -877,7 +857,6 @@ function displayTasks() {
 
                 priority.className =
                     "priority-medium";
-
             }
 
 
@@ -909,17 +888,17 @@ function displayTasks() {
 
                 dueDate.className =
                     status.className;
-
             }
+
 
             else {
 
                 dueDate.textContent =
                     "📅 No due date";
 
+
                 dueDate.className =
                     "no-due-date";
-
             }
 
 
@@ -977,7 +956,6 @@ function displayTasks() {
                     toggleTask(
                         task
                     );
-
                 };
 
 
@@ -1013,7 +991,6 @@ function displayTasks() {
                     showDeleteConfirmation(
                         task.id
                     );
-
                 };
 
 
@@ -1042,7 +1019,6 @@ function displayTasks() {
             taskList.appendChild(
                 taskItem
             );
-
         }
     );
 }
@@ -1069,9 +1045,7 @@ function getDueDateStatus(
 
             className:
                 "due-completed"
-
         };
-
     }
 
 
@@ -1109,9 +1083,7 @@ function getDueDateStatus(
 
             className:
                 "overdue"
-
         };
-
     }
 
 
@@ -1127,9 +1099,7 @@ function getDueDateStatus(
 
             className:
                 "due-today"
-
         };
-
     }
 
 
@@ -1143,7 +1113,6 @@ function getDueDateStatus(
 
         className:
             "due-future"
-
     };
 }
 
@@ -1159,7 +1128,6 @@ function formatDate(
     if (!dateString) {
 
         return "No due date";
-
     }
 
 
@@ -1177,7 +1145,6 @@ function formatDate(
     ) {
 
         return dateString;
-
     }
 
 
@@ -1244,7 +1211,6 @@ function updateStatistics() {
 
         totalElement.textContent =
             total;
-
     }
 
 
@@ -1252,7 +1218,6 @@ function updateStatistics() {
 
         completedElement.textContent =
             completed;
-
     }
 
 
@@ -1260,7 +1225,6 @@ function updateStatistics() {
 
         pendingElement.textContent =
             pending;
-
     }
 
 
@@ -1278,7 +1242,6 @@ function updateStatistics() {
                 ) *
                 100
             );
-
     }
 
 
@@ -1299,7 +1262,6 @@ function updateStatistics() {
         percentElement.textContent =
             percentage +
             "%";
-
     }
 
 
@@ -1308,7 +1270,6 @@ function updateStatistics() {
         fillElement.style.width =
             percentage +
             "%";
-
     }
 }
 
@@ -1348,7 +1309,6 @@ async function toggleTask(
 
                 }
             );
-
     }
 
 
@@ -1419,6 +1379,7 @@ function showDeleteConfirmation(taskId) {
     const existing =
         document.getElementById("deleteConfirmModal");
 
+
     if (existing) {
         existing.remove();
     }
@@ -1447,8 +1408,10 @@ function showDeleteConfirmation(taskId) {
     const modal =
         document.createElement("div");
 
+
     modal.id =
         "deleteConfirmModal";
+
 
     modal.className =
         "delete-confirm-modal";
@@ -1539,10 +1502,8 @@ function showDeleteConfirmation(taskId) {
             function () {
 
                 modal.remove();
-
             }
         );
-
     }
 
 
@@ -1565,10 +1526,8 @@ function showDeleteConfirmation(taskId) {
                 await performDeleteTask(
                     taskId
                 );
-
             }
         );
-
     }
 
 
@@ -1585,9 +1544,7 @@ function showDeleteConfirmation(taskId) {
             ) {
 
                 modal.remove();
-
             }
-
         }
     );
 
@@ -1609,22 +1566,20 @@ function showDeleteConfirmation(taskId) {
                         "deleteConfirmModal"
                     );
 
+
                 if (activeModal) {
 
                     activeModal.remove();
-
                 }
+
 
                 document.removeEventListener(
                     "keydown",
                     deleteEscapeHandler
                 );
-
             }
-
         }
     );
-
 }
 
 
@@ -1660,7 +1615,6 @@ async function performDeleteTask(
 
         confirmButton.textContent =
             "Deleting...";
-
     }
 
 
@@ -1709,8 +1663,8 @@ async function performDeleteTask(
 
             confirmButton.textContent =
                 "🗑️ Delete Task";
-
         }
+
 
         return;
     }
@@ -1727,9 +1681,7 @@ async function performDeleteTask(
 
 
     if (deleteModal) {
-
         deleteModal.remove();
-
     }
 
 
@@ -1750,7 +1702,6 @@ async function performDeleteTask(
     console.log(
         "Task deleted successfully."
     );
-
 }
 
 
@@ -1831,8 +1782,8 @@ function openCalendar() {
             block:
                 "start"
         });
-
     }
+
 
     else {
 
@@ -1841,7 +1792,6 @@ function openCalendar() {
 
 
         closeCalendarTaskPanel();
-
     }
 }
 
@@ -1916,7 +1866,6 @@ function getTasksForDate(
     ) {
 
         return [];
-
     }
 
 
@@ -1962,19 +1911,23 @@ function renderCalendar() {
     const calendarMonth =
         document.getElementById("calendarMonth");
 
+
     if (!calendarGrid || !calendarMonth) {
         console.error("Calendar elements not found.");
         return;
     }
 
+
     // Clear old calendar
     calendarGrid.innerHTML = "";
+
 
     const year =
         calendarDate.getFullYear();
 
     const month =
         calendarDate.getMonth();
+
 
     // ========================================================
     // MONTH TITLE
@@ -2018,12 +1971,14 @@ function renderCalendar() {
     const today =
         new Date();
 
+
     today.setHours(
         0,
         0,
         0,
         0
     );
+
 
     const todayString =
         formatCalendarDate(
@@ -2046,8 +2001,10 @@ function renderCalendar() {
         const emptyDay =
             document.createElement("div");
 
+
         emptyDay.className =
             "calendar-day empty";
+
 
         calendarGrid.appendChild(
             emptyDay
@@ -2075,6 +2032,7 @@ function renderCalendar() {
 
         const dayElement =
             document.createElement("div");
+
 
         dayElement.className =
             "calendar-day";
@@ -2117,11 +2075,14 @@ function renderCalendar() {
         const dateText =
             document.createElement("div");
 
+
         dateText.className =
             "calendar-date";
 
+
         dateText.textContent =
             day;
+
 
         dayElement.appendChild(
             dateText
@@ -2149,13 +2110,16 @@ function renderCalendar() {
             const taskCount =
                 document.createElement("div");
 
+
             taskCount.className =
                 "calendar-task-count";
+
 
             taskCount.textContent =
                 dayTasks.length === 1
                     ? "1 task"
                     : dayTasks.length + " tasks";
+
 
             dayElement.appendChild(
                 taskCount
@@ -2168,6 +2132,7 @@ function renderCalendar() {
 
             const statusRow =
                 document.createElement("div");
+
 
             statusRow.className =
                 "calendar-status-row";
@@ -2193,12 +2158,15 @@ function renderCalendar() {
                 const completedBadge =
                     document.createElement("span");
 
+
                 completedBadge.className =
                     "calendar-completed-count";
+
 
                 completedBadge.textContent =
                     "✓ " +
                     completedCount;
+
 
                 statusRow.appendChild(
                     completedBadge
@@ -2213,12 +2181,15 @@ function renderCalendar() {
                 const pendingBadge =
                     document.createElement("span");
 
+
                 pendingBadge.className =
                     "calendar-pending-count";
+
 
                 pendingBadge.textContent =
                     "○ " +
                     pendingCount;
+
 
                 statusRow.appendChild(
                     pendingBadge
@@ -2236,6 +2207,7 @@ function renderCalendar() {
             // ==================================================
 
             const maxTasks = 3;
+
 
             dayTasks
                 .slice(
@@ -2260,6 +2232,7 @@ function renderCalendar() {
                         const priority =
                             task.priority ||
                             "medium";
+
 
                         taskElement.classList.add(
                             "priority-" +
@@ -2296,6 +2269,7 @@ function renderCalendar() {
                                     "T00:00:00"
                                 );
 
+
                             if (
                                 due < today
                             ) {
@@ -2314,6 +2288,7 @@ function renderCalendar() {
                         let priorityIcon =
                             "🟡";
 
+
                         if (
                             priority === "high"
                         ) {
@@ -2321,6 +2296,7 @@ function renderCalendar() {
                             priorityIcon =
                                 "🔴";
                         }
+
 
                         else if (
                             priority === "low"
@@ -2381,8 +2357,10 @@ function renderCalendar() {
                 const moreElement =
                     document.createElement("div");
 
+
                 moreElement.className =
                     "calendar-more";
+
 
                 moreElement.textContent =
                     "+" +
@@ -2391,6 +2369,7 @@ function renderCalendar() {
                         maxTasks
                     ) +
                     " more";
+
 
                 dayElement.appendChild(
                     moreElement
@@ -2410,7 +2389,9 @@ function renderCalendar() {
                 selectedCalendarDate =
                     dateString;
 
+
                 renderCalendar();
+
 
                 showCalendarDateTasks(
                     dateString
@@ -2428,6 +2409,7 @@ function renderCalendar() {
         );
     }
 }
+
 
 // ============================================================
 // SHOW TASKS FOR SELECTED DATE
@@ -2506,8 +2488,8 @@ function showCalendarDateTasks(
                 "."
             );
 
-            return;
 
+            return;
         }
 
 
@@ -2545,7 +2527,6 @@ function showCalendarDateTasks(
                         "medium"
                     ) +
                     "\n\n";
-
             }
         );
 
@@ -2616,6 +2597,7 @@ function showCalendarDateTasks(
 
     // TASK CARDS
 
+
     dayTasks.forEach(
         function (task) {
 
@@ -2636,7 +2618,6 @@ function showCalendarDateTasks(
                 taskCard.classList.add(
                     "completed"
                 );
-
             }
 
 
@@ -2766,7 +2747,6 @@ function showCalendarDateTasks(
                     showCalendarTaskDetails(
                         task
                     );
-
                 }
             );
 
@@ -2774,7 +2754,6 @@ function showCalendarDateTasks(
             panelContent.appendChild(
                 taskCard
             );
-
         }
     );
 
@@ -2835,7 +2814,6 @@ function refreshCalendar() {
     ) {
 
         renderCalendar();
-
     }
 }
 
@@ -2992,7 +2970,6 @@ function showCalendarTaskDetails(
             "click",
             closeCalendarTaskDetails
         );
-
     }
 
 
@@ -3013,10 +2990,8 @@ function showCalendarTaskDetails(
                 openEditTaskForm(
                     task.id
                 );
-
             }
         );
-
     }
 
 
@@ -3037,10 +3012,8 @@ function showCalendarTaskDetails(
                 await toggleTask(
                     task
                 );
-
             }
         );
-
     }
 
 
@@ -3058,13 +3031,11 @@ function showCalendarTaskDetails(
             "click",
             function () {
 
-        showDeleteConfirmation(
+                showDeleteConfirmation(
                     task.id
                 );
-
             }
         );
-
     }
 
 
@@ -3080,9 +3051,7 @@ function showCalendarTaskDetails(
             ) {
 
                 closeCalendarTaskDetails();
-
             }
-
         }
     );
 }
@@ -3104,7 +3073,6 @@ function openEditTaskForm(
                     item.id ===
                     taskId
                 );
-
             }
         );
 
@@ -3150,7 +3118,6 @@ function openEditTaskForm(
 
             <div class="calendar-edit-form">
 
-
                 <label
                     for="editTaskTitle"
                 >
@@ -3176,7 +3143,6 @@ function openEditTaskForm(
                 <select
                     id="editTaskPriority"
                 >
-
                     <option value="low">
                         🟢 Low
                     </option>
@@ -3188,7 +3154,6 @@ function openEditTaskForm(
                     <option value="high">
                         🔴 High
                     </option>
-
                 </select>
 
 
@@ -3259,7 +3224,6 @@ function openEditTaskForm(
 
         titleInput.value =
             task.title || "";
-
     }
 
 
@@ -3268,7 +3232,6 @@ function openEditTaskForm(
         priorityInput.value =
             task.priority ||
             "medium";
-
     }
 
 
@@ -3276,7 +3239,6 @@ function openEditTaskForm(
 
         dueDateInput.value =
             task.due_date || "";
-
     }
 
 
@@ -3297,10 +3259,8 @@ function openEditTaskForm(
                 showCalendarTaskDetails(
                     task
                 );
-
             }
         );
-
     }
 
 
@@ -3321,10 +3281,8 @@ function openEditTaskForm(
                 showCalendarTaskDetails(
                     task
                 );
-
             }
         );
-
     }
 
 
@@ -3345,10 +3303,8 @@ function openEditTaskForm(
                 await saveEditedTask(
                     task.id
                 );
-
             }
         );
-
     }
 
 
@@ -3359,7 +3315,6 @@ function openEditTaskForm(
         titleInput.focus();
 
         titleInput.select();
-
     }
 }
 
@@ -3436,6 +3391,7 @@ async function saveEditedTask(
             "Task title cannot be empty."
         );
 
+
         titleInput.focus();
 
         return;
@@ -3457,7 +3413,6 @@ async function saveEditedTask(
 
         saveButton.textContent =
             "Saving...";
-
     }
 
 
@@ -3511,7 +3466,6 @@ async function saveEditedTask(
 
             saveButton.textContent =
                 "💾 Save Changes";
-
         }
 
 
@@ -3565,9 +3519,7 @@ function closeCalendarTaskDetails() {
 
 
     if (modal) {
-
         modal.remove();
-
     }
 }
 
@@ -3592,6 +3544,8 @@ function escapeHtml(
 
     return div.innerHTML;
 }
+
+
 // ============================================================
 // STEP 8 — BROWSER NOTIFICATIONS
 // ============================================================
@@ -3607,10 +3561,12 @@ async function requestNotificationPermission() {
         return false;
     }
 
+
     if (Notification.permission === "granted") {
 
         return true;
     }
+
 
     if (Notification.permission === "default") {
 
@@ -3620,48 +3576,11 @@ async function requestNotificationPermission() {
         return permission === "granted";
     }
 
-    return false;
-}
-
-// ============================================================
-// STEP 8 — BROWSER NOTIFICATIONS
-// ============================================================
-
-async function requestNotificationPermission() {
-
-    if (!("Notification" in window)) {
-
-        console.log(
-            "This browser does not support notifications."
-        );
-
-        return false;
-    }
-
-    if (
-        Notification.permission ===
-        "granted"
-    ) {
-
-        return true;
-    }
-
-    if (
-        Notification.permission ===
-        "default"
-    ) {
-
-        const permission =
-            await Notification.requestPermission();
-
-        return (
-            permission ===
-            "granted"
-        );
-    }
 
     return false;
 }
+
+
 // ============================================================
 // STEP 8.2 — SHOW TASK NOTIFICATION
 // ============================================================
@@ -3672,9 +3591,11 @@ function showTaskNotification(title, message) {
         return;
     }
 
+
     if (Notification.permission !== "granted") {
         return;
     }
+
 
     new Notification(title, {
         body: message,
@@ -3682,7 +3603,6 @@ function showTaskNotification(title, message) {
     });
 }
 window.showTaskNotification = showTaskNotification;
-
 
 // ============================================================
 // COMPLETE TASK COMPATIBILITY FUNCTION
@@ -3700,9 +3620,9 @@ async function completeTask(
                     item.id ===
                     taskId
                 );
-
             }
         );
+
 
     if (!task) {
 
@@ -3714,9 +3634,11 @@ async function completeTask(
         return;
     }
 
+
         await toggleTask(
-        task
-    );
+            task
+        );
+
 
     // STEP 8.3 — NOTIFY WHEN TASK IS COMPLETED
     showTaskNotification(
@@ -3724,6 +3646,7 @@ async function completeTask(
         `"${task.title}" has been completed.`
     );
 }
+
 
 // ============================================================
 // MAKE FUNCTIONS AVAILABLE TO HTML
@@ -3746,6 +3669,7 @@ window.toggleTask =
 
 window.completeTask =
     completeTask;
+
 // ============================================================
 // DELETE TASK
 // ============================================================
@@ -3755,6 +3679,7 @@ function deleteTask(taskId) {
         console.error("deleteTask: taskId is missing");
         return;
     }
+
 
     showDeleteConfirmation(taskId);
 }
@@ -3795,41 +3720,8 @@ window.showDeleteConfirmation =
     showDeleteConfirmation;
 
 window.requestNotificationPermission =
-    requestNotificationPermission;  
-// ============================================================
-// STEP 8.2 — SHOW TASK NOTIFICATION
-// ============================================================
+    requestNotificationPermission;
 
-function showTaskNotification(title, message) {
-
-    // Browser does not support notifications
-    if (!("Notification" in window)) {
-        console.log("This browser does not support notifications.");
-        return;
-    }
-
-    // Permission not granted
-    if (Notification.permission !== "granted") {
-        console.log("Notification permission is not granted.");
-        return;
-    }
-
-    // Show notification
-    const notification = new Notification(title, {
-        body: message,
-        icon: "🚀"
-    });
-
-    // Optional: when notification is clicked
-    notification.onclick = function () {
-        window.focus();
-        notification.close();
-    };
-}
-
-// Make available to HTML / other functions
-window.showTaskNotification =
-    showTaskNotification;
 document.addEventListener("DOMContentLoaded", async () => {
     await requestNotificationPermission();
 });

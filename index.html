@@ -1,67 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Tasks</title>
-
+    <title>Auth App</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <main class="app">
-
-        <header class="header">
-
-            <div>
-                <h1>My Tasks 🚀</h1>
-                <p id="userEmail">Loading...</p>
-            </div>
-
-            <button onclick="logout()" class="logout-button">
-                Logout
-            </button>
-
+    <div class="container">
+        <header>
+            <h1>Welcome to Auth App</h1>
+            <p>Secure authentication made simple</p>
         </header>
-
-
-        <section class="input-area">
-
-            <input
-                type="text"
-                id="taskInput"
-                placeholder="Add a new task..."
-            >
-
-            <button
-                onclick="addTask()"
-                class="add-button">
-                +
-            </button>
-
-        </section>
-
-
-        <section class="tasks-section">
-
-            <h2>Today's Tasks</h2>
-
-            <ul id="taskList"></ul>
-
-        </section>
-
-    </main>
-
-
-    <!-- Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- Our JavaScript -->
+        
+        <main>
+            <div class="cards">
+                <div class="card auth-card">
+                    <h3>Login</h3>
+                    <button onclick="showAuth('login')">Login</button>
+                </div>
+                <div class="card dashboard-card">
+                    <h3>Dashboard</h3>
+                    <button onclick="showAuth('dashboard')">Dashboard</button>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2026 Auth App. All rights reserved.</p>
+        </footer>
+    </div>
+    
     <script src="script.js"></script>
-
 </body>
-
 </html>
